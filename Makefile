@@ -4,7 +4,7 @@
 
 # Use bash for inline if-statements in arch_patch target
 SHELL:=bash
-OWNER:=jupyter
+OWNER:=isbjornlabs
 ARCH:=$(shell uname -m)
 
 # Need to list the images in build dependency order
