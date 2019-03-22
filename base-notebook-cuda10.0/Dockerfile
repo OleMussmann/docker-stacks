@@ -1,8 +1,9 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
-# Nvidia Cuda 10.1 cudnn7 devel Ubuntu 18.04 from 2019-03-20
-ARG BASE_CONTAINER=nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+# Nvidia Cuda 10.0 cudnn7 devel Ubuntu 18.04 from 2019-03-20
+ARG BASE_CONTAINER=nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+#ARG BASE_CONTAINER=nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04@sha256:xxx
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
@@ -15,6 +16,7 @@ USER root
 # Install all OS dependencies for notebook server that starts but lacks all
 # features (e.g., download as all possible file formats)
 ENV DEBIAN_FRONTEND noninteractive
+#RUN apt-get update \
 RUN apt-get update && apt-get -yq dist-upgrade \
  && apt-get install -yq --no-install-recommends \
     wget \
