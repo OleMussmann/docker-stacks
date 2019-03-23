@@ -1,5 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
+#ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda10.0:20190322.1
 ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda10.0:experimental
 FROM $BASE_CONTAINER
 
@@ -20,14 +21,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 USER $NB_UID
 
 # Install Tensorflow
-#RUN conda install --quiet --yes \
-#    'tensorflow=1.12*' \
-#    'keras=2.2*' && \
-RUN pip install --no-cache-dir \
-      'tensorflow-gpu' && \
-      rm -rf /home/$NB_USER/.local && \
-      fix-permissions $CONDA_DIR && \
-      fix-permissions /home/$NB_USER
+# Install GPU-optimized JPEG encoder, see:
+# https://github.com/fastai/fastai#conda-install
+RUN conda install --quiet --yes \
+    -c pytorch -c fastai 'fastai' && \
+    conda uninstall --force jpeg libtiff -y && \
+    conda install -c conda-forge libjpeg-turbo && \
+    conda clean --all && \
+    CC="cc -mavx2" pip install --no-cache-dir -U \
+    --force-reinstall --no-binary :all: --compile pillow-simd && \
+    pip install --no-cache-dir \
+    'tensorflow-gpu' && \
+    rm -rf /home/$NB_USER/.local && \
+    fix-permissions $CONDA_DIR && \
+    fix-permissions /home/$NB_USER
 
 RUN echo "WARNING!\n\nThis home folder will vanish when the docker container is destroyed. Make sure that the '/workdir' directory is mounted on the host and store your scripts and data there." > ~/WARNING.txt
 

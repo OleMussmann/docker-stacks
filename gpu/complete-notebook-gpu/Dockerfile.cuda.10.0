@@ -1,0 +1,41 @@
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda10.0:20190322.1
+FROM $BASE_CONTAINER
+
+LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
+
+USER root
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      software-properties-common && \
+      add-apt-repository ppa:neovim-ppa/stable && \
+      apt-get update && apt-get install -y --no-install-recommends \
+      neovim \
+      htop \
+      tmux \
+      tree && \
+      rm -rf /var/lib/apt/lists/*
+
+USER $NB_UID
+
+# Install Tensorflow
+# Install GPU-optimized JPEG encoder, see:
+# https://github.com/fastai/fastai#conda-install
+RUN conda install --quiet --yes \
+    -c pytorch -c fastai 'fastai=1.0.50.post1' && \
+    conda uninstall --force jpeg libtiff -y && \
+    conda install -c conda-forge libjpeg-turbo && \
+    conda clean --all && \
+    CC="cc -mavx2" pip install --no-cache-dir -U \
+    --force-reinstall --no-binary :all: --compile pillow-simd && \
+    pip install --no-cache-dir \
+    'tensorflow-gpu==1.13.*' && \
+    rm -rf /home/$NB_USER/.local && \
+    fix-permissions $CONDA_DIR && \
+    fix-permissions /home/$NB_USER
+
+RUN echo "WARNING!\n\nThis home folder will vanish when the docker container is destroyed. Make sure that the '/workdir' directory is mounted on the host and store your scripts and data there." > ~/WARNING.txt
+
+# prettify command line
+RUN echo "\n#prettify command line\nPS1='🐳  \[\033[1;36m\]\h \[\033[1;34m\]\W\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]'" >> ~/.bashrc
