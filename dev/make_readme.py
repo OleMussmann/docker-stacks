@@ -29,29 +29,29 @@ for deep_learning_package in deep_learning_packages:
     deep_learning_string += new_line
 
 extensions_string = ""
-for extension in versions["extensions"]:
+for extension in sorted(versions["extensions"]):
     new_line = "| " + extension + " | " \
         + versions["extensions"][extension] + " |\n"
     extensions_string += new_line
 
 packages_string = ""
-for package in versions["packages"]:
+for package in sorted(versions["packages"]):
     new_line = "| " + package + " | " + versions["packages"][package] + " |\n"
     packages_string += new_line
 
 apt_string = ""
-for program in versions["apt"]:
+for program in sorted(versions["apt"]):
     new_line = "| " + program + " | " + versions["apt"][program] + " |\n"
-    packages_string += new_line
+    apt_string += new_line
 
 framework_block = """### Framework
 | name | version |
 |-|-|
 | Python | {python_version} |
+| Miniconda | {miniconda_version} |
 | CUDA | {cuda_version} |
 | cuDNN | {cudnn_version} |
 | NCCL | {nccl_version} |
-| Miniconda | {miniconda_version} |
 
 """.format( \
            python_version=versions["framework"]["Python"],
@@ -79,12 +79,14 @@ extensions_block = """### Extensions
 packages_block = """### Python Packages
 | name | version |
 |-|-|
-{packages_string}""".format(packages_string=packages_string)
+{packages_string}
+""".format(packages_string=packages_string)
 
 apt_block = """### System Programs
 | name | version |
 |-|-|
-{apt_string}""".format(apt_string=apt_string)
+{apt_string}
+""".format(apt_string=apt_string)
 
 version_info = \
     framework_block + \
@@ -93,5 +95,5 @@ version_info = \
     packages_block + \
     apt_block
 
-with open(notebook_folder + "/" + README.md, 'w') as f:
+with open(notebook_folder + "/README.md", 'w') as f:
     f.write(version_info)
