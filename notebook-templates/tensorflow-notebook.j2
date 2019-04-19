@@ -7,7 +7,7 @@ LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
 
 # Install Tensorflow
 RUN pip install --no-cache-dir \
-      'tensorflow-gpu{% tensorflow_version %}' && \
+      'tensorflow-gpu{% tensorflow-gpu_version %}' && \
       rm -rf /home/$NB_USER/.local && \
       fix-permissions $CONDA_DIR && \
       fix-permissions /home/$NB_USER

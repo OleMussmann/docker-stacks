@@ -31,23 +31,23 @@ RUN conda install --quiet --yes \
     'pandas{% pandas_version %}' \
     'numexpr{% numexpr_version %}' \
     'matplotlib{% matplotlib_version %}' \
-    'scipy{%scipy_version %}' \
-    'seaborn{%seaborn_version %}' \
+    'scipy{% scipy_version %}' \
+    'seaborn{% seaborn_version %}' \
     'scikit-learn{% scikit-learn_version %}' \
     'scikit-image{% scikit-image_version %}' \
-    'sympy{%sympy_version %}' \
+    'sympy{% sympy_version %}' \
     'cython{% cython_version %}' \
-    'patsy{%patsy_version %}' \
-    'statsmodels{%statsmodels_version %}' \
-    'cloudpickle{%cloudpickle_version %}' \
+    'patsy{% patsy_version %}' \
+    'statsmodels{% statsmodels_version %}' \
+    'cloudpickle{% cloudpickle_version %}' \
     'dill{% dill_version %}' \
     'dask{% dask_version %}' \
-    'numba{%numba_version %}' \
-    'bokeh{%bokeh_version %}' \
+    'numba{% numba_version %}' \
+    'bokeh{% bokeh_version %}' \
     'sqlalchemy{% sqlalchemy_version %}' \
     'hdf5{% hdf5_version %}' \
     'h5py{% h5py_version %}' \
-    'vincent{%vincent_version %}' \
+    'vincent{% vincent_version %}' \
     'beautifulsoup4{% beautifulsoup4_version %}' \
     'protobuf{% protobuf_version %}' \
     'xlrd{% xlrd_version %}'  && \
@@ -58,7 +58,7 @@ RUN conda install --quiet --yes \
     # Also activate ipywidgets extension for JupyterLab
     # Check this URL for most recent compatibilities
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager{% jupyterlab-manager_version %} && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager{% @jupyter-widgets/jupyterlab-manager_version %} && \
     jupyter labextension install jupyterlab_bokeh{% jupyterlab_bokeh_version %} && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \

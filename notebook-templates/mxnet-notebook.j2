@@ -7,7 +7,7 @@ LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
 
 # Install Tensorflow
 RUN pip install --no-cache-dir \
-      'mxnet-cu100mkl{% mxnet_version %}' && \
+      'mxnet-cu{% cuda_major %}{% cuda_minor %}mkl{% mxnet-cu{% cuda_major %}{% cuda_minor %}mkl_version %}' && \
       rm -rf /home/$NB_USER/.local && \
       fix-permissions $CONDA_DIR && \
       fix-permissions /home/$NB_USER
