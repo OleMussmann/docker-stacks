@@ -22,7 +22,8 @@ if (( $# == 0 )); then
   exit 1
 fi
 
-image_name_with_tag=$1; shift;
+image_name_with_tag=$1;
+owner=$2; shift; shift;
 dargs=$@
  
 image_name_split=(${image_name_with_tag//:/" "})
@@ -34,16 +35,18 @@ notebook_name="${image_name_without_tag/-$cuda/}"
 
 if [[ "$image_name_with_tag" == *":experimental" ]] ; then
   full_folder="./notebooks/$cuda:experimental/$notebook_name"
-  echo "building experimental image \"$image_name_with_tag\" in folder" \
+  echo "building experimental image \"$image_name_with_tag\" from folder" \
     "\"$cuda:experimental/$notebook_name\""
 
   if [[ "$notebook_name" == "base-notebook" ]] ; then
-    docker build "$dargs" --no-cache --pull --rm --force-rm \
-      -t "$image_name_with_tag" \
+#    docker build $dargs --no-cache --pull --rm --force-rm \
+    docker build $dargs --pull --rm --force-rm \
+      -t "$owner/$image_name_with_tag" \
       "$full_folder"
   else
-    docker build "$dargs" --no-cache --rm --force-rm \
-      -t "$image_name_with_tag" \
+#    docker build $dargs --no-cache --rm --force-rm \
+    docker build $dargs --rm --force-rm \
+      -t "$owner/$image_name_with_tag" \
       "$full_folder"
   fi
 
@@ -59,11 +62,11 @@ if [[ "$image_name_with_tag" == *":experimental" ]] ; then
 
 else
   full_folder="./notebooks/$cuda/$notebook_name"
-  echo "building version-pinned image \"$image_name_with_tag\" in folder" \
+  echo "building version-pinned image \"$image_name_with_tag\" from folder" \
     "\"$cuda/$notebook_name\""
-  docker build "$dargs" --rm --force-rm \
-    -t "$image_name_with_tag" \
-    -t "$image_name_without_tag":latest \
+  docker build $dargs --rm --force-rm \
+    -t "$owner/$image_name_with_tag" \
+    -t "$owner/$image_name_without_tag":latest \
     "$full_folder"
   experimental_readme=$(cat ./notebooks/$cuda:experimental/base-notebook/README.md)
   miniconda_version=$(echo $experimental_readme | grep "Miniconda" \
@@ -71,11 +74,15 @@ else
 fi
 
 # extract version numbers
-docker run -it -w /workdir \
+echo "extracting version numbers from \"$owner/$image_name_with_tag\""
+docker run --rm -it -w /workdir \
   -v $(readlink -f $dev_folder):/workdir \
-  "$image_name_with_tag" \
-  bash -c "./$print_versions_script" > "$full_folder"/"$versions_file"
+  "$owner/$image_name_with_tag" \
+  bash -c "./$print_versions_script" \
+  | sed "s/{'framework': {/{'framework': {'Miniconda': '$miniconda_version', /" \
+  > "$full_folder"/"$versions_file"
 
 # generate readme including version numbers
+echo "generating README.md in $full_folder"
 "$dev_folder"/"$make_readme_script" \
-  "$template_folder"/"$notebook_name".j2 "$full_folder"
+  "$template_folder"/"$notebook_name".j2 "$full_folder" $miniconda_version
