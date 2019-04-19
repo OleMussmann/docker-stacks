@@ -1,11 +1,6 @@
-[![Google Group badge](https://img.shields.io/badge/-Google%20Group-lightgrey.svg)](https://groups.google.com/forum/#!forum/jupyter)
-[![Read the Docs badge](https://img.shields.io/readthedocs/jupyter-docker-stacks.svg)](https://jupyter-docker-stacks.readthedocs.io/en/latest/ "Documentation build status")
-[![DockerHub badge](https://images.microbadger.com/badges/version/jupyter/base-notebook.svg)](https://microbadger.com/images/jupyter/base-notebook "Recent tag/version of jupyter/base-notebook")
-[![Binder badget](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jupyter/docker-stacks/master?filepath=README.ipynb "Launch a jupyter/base-notebook container on mybinder.org")
-
 # Jupyter Docker Stacks
 
-Jupyter Docker Stacks are a set of ready-to-run Docker images containing Jupyter applications and interactive computing tools.
+Jupyter Docker Stacks are a set of ready-to-run, [CUDA](https://developer.nvidia.com/cuda-toolkit) enabled, GPU-accelerated [Docker](https://hub.docker.com/u/isbjornlabs/) images containing Jupyter applications and interactive computing tools for deep learning.
 
 ## Quick Start
 
@@ -13,21 +8,21 @@ You can try a [recent build of the jupyter/base-notebook image on mybinder.org](
 
 The [User Guide on ReadTheDocs](http://jupyter-docker-stacks.readthedocs.io/) describes additional uses and features in detail.
 
-**Example 1:** This command pulls the `jupyter/scipy-notebook` image tagged `17aba6048f44` from Docker Hub if it is not already present on the local host. It then starts a container running a Jupyter Notebook server and exposes the server on host port 8888. The server logs appear in the terminal. Visiting `http://<hostname>:8888/?token=<token>` in a browser loads the Jupyter Notebook dashboard page, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. The container remains intact for restart after the notebook server exits.
+**Example 1:** This command pulls the `isbjornlabs/tensorflow-notebook` image tagged `20190419` from Docker Hub if it is not already present on the local host. It then starts a container running a Jupyter Notebook server and exposes the server on host port 8888. The server logs appear in the terminal. Visiting `http://<hostname>:8888/?token=<token>` in a browser loads the Jupyter Notebook dashboard page, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. The container remains intact for restart after the notebook server exits.
 
-    docker run -p 8888:8888 jupyter/scipy-notebook:17aba6048f44
+    docker run -p 8888:8888 isbjornlabs/tensorflow-notebook:20190419
 
 **Example 2:** This command performs the same operations as **Example 1**, but it exposes the server on host port 10000 instead of port 8888. Visiting ``http://<hostname>:10000/?token=<token>`` in a browser loads JupyterLab, where ``hostname`` is the name of the computer running docker and ``token`` is the secret token printed in the console.::
 
-    docker run -p 10000:8888 jupyter/scipy-notebook:17aba6048f44
+    docker run -p 10000:8888 isbjornlabs/tensorflow-notebook:20190419
 
-**Example 3:** This command pulls the `jupyter/datascience-notebook` image tagged `9b06df75e445` from Docker Hub if it is not already present on the local host. It then starts an *ephemeral* container running a Jupyter Notebook server and exposes the server on host port 10000. The command mounts the current working directory on the host as `/home/jovyan/work` in the container. The server logs appear in the terminal. Visiting `http://<hostname>:10000/?token=<token>` in a browser loads JupyterLab, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. Docker destroys the container after notebook server exit, but any files written to `~/work` in the container remain intact on the host.
+**Example 3:** This command pulls the `isbjornlabs/fastai-notebook` image tagged `20190419` from Docker Hub if it is not already present on the local host. It then starts an *ephemeral* container running a Jupyter Notebook server and exposes the server on host port 10000. The command mounts the current working directory on the host as `/home/jovyan/work` in the container. The server logs appear in the terminal. Visiting `http://<hostname>:10000/?token=<token>` in a browser loads JupyterLab, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. Docker destroys the container after notebook server exit, but any files written to `/workdir` in the container remain intact on the host.
 
-    docker run --rm -p 10000:8888 -e JUPYTER_ENABLE_LAB=yes -v "$PWD":/home/jovyan/work jupyter/datascience-notebook:9b06df75e445
+    docker run --rm -p 10000:8888 -e JUPYTER_ENABLE_LAB=yes -v "$PWD":/workdir isbjornlabs/fastai-notebook:20190419
 
 ## Contributing
 
-Please see the [Contributor Guide on ReadTheDocs](http://jupyter-docker-stacks.readthedocs.io/) for information about how to contribute package updates, recipes, features, tests, and community maintained stacks.
+Feel free to file bug reports and pull requests. However, you are encouraged to contribute to the [upstream jupyter docker-stacks](https://github.com/jupyter/docker-stacks) instead. See the [Contributor Guide on ReadTheDocs](http://jupyter-docker-stacks.readthedocs.io/) for information about how to contribute package updates, recipes, features, tests, and community maintained stacks.
 
 ## Alternatives
 
@@ -37,7 +32,8 @@ Please see the [Contributor Guide on ReadTheDocs](http://jupyter-docker-stacks.r
 
 ## Resources
 
-* [Documentation on ReadTheDocs](http://jupyter-docker-stacks.readthedocs.io/)
-* [Issue Tracker on GitHub](https://github.com/jupyter/docker-stacks)
+* [Issue Tracker on GitHub](https://github.com/OleMussmann/docker-stacks)
+* [Upstream Issue Tracker on GitHub](https://github.com/jupyter/docker-stacks)
+* [Upstream Documentation on ReadTheDocs](http://jupyter-docker-stacks.readthedocs.io/)
 * [Jupyter Google Group](https://groups.google.com/forum/#!forum/jupyter)
 * [Jupyter Website](https://jupyter.org)
