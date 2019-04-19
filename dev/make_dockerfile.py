@@ -4,63 +4,49 @@
 """ Generate Dockerfiles from template """
 
 import ast
+import re
 import requests
 import subprocess
 import sys
 
 versions_file = "versions.dict"
 
-dockerfile = "/tmp/out"
-
 repo_url = "https://repo.continuum.io/miniconda/"
 
 notebook_name = sys.argv[1]
-
 date_string = sys.argv[2]
-cudnn = sys.argv[3]  # optional, will use versions.dict otherwise
+cudnn = sys.argv[3]
+
+cuda = notebook_name.split(':')[0].split('-')[-1].split('cuda')[-1]
+cuda_major, cuda_minor = cuda.split('.')
+
+notebook_root = notebook_name.split('-cuda')[0]
+
+notebook_folder_experimental = "notebooks/cuda" \
+    + cuda_major + "." + cuda_minor + ":experimental/" + notebook_root
+notebook_folder_stable = "notebooks/cuda" \
+    + cuda_major + "." + cuda_minor + "/" + notebook_root
+
+template_file = "notebook-templates/" + notebook_root + ".j2"
 
 if ":experimental" in notebook_name:
     experimental = True
     tag = "experimental"
+    notebook_folder = notebook_folder_experimental
 else:
     experimental = False
     tag = date_string
+    notebook_folder = notebook_folder_stable
 
-cuda = notebook_name.split(':').[0].split('-')[-1].split('cuda')[-1]
-cuda_major, cuda_minor = cuda.split('.')
-
-notebook_folder_experimental = "notebooks/cuda" \
-    + cuda_major + "." + cuda_minor + ":experimental/" + notebook_name
-notebook_folder_stable = "notebooks/cuda" \
-    + cuda_major + "." + cuda_minor + "/" + notebook_name
-
-notebook_stable = notebook_name.replace(":experimental", '')
-template_file = "notebook-templates/" + notebook_stable + ".j2"
-
-with open(notebook_folder + "/" + versions_file) as f:
+# Use experimental versions_file, also for stable branch. We want to inherit
+# the new versions to stable after testing the experimental containers.
+with open(notebook_folder_experimental + "/" + versions_file) as f:
     content = f.read()
     versions = ast.literal_eval(content)
-
-cuda_major = versions["framework"]["CUDA"].split('.')[0]
-cuda_minor = versions["framework"]["CUDA"].split('.')[1]
-cudnn = versions["framework"]["cuDNN"].split('.')[0]
-conda_version = versions["packages"]["conda"]
-
-base_container = "nvidia/cuda:" + cuda_major + "." + cuda_minor + "-cudnn" \
-    + cudnn + "-devel"
-
-sha_process = subprocess.run(("docker inspect --format='{{.RepoDigests}}' " +
-                             base_container).split(), stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE, check=True)
-sha_output = sha_process.stdout.decode()
-base_container_sha = sha_output.split(':')[1].split(']')[0]
 
 substitutions = []
 
 if experimental:
-    repo_website = requests.get(repo_url)
-    repo_text = repo_website.text.split('\n')
-
 #    # get lastest miniconda version
 #    if miniconda_version == "":
 #        sha_latest = ""
@@ -84,22 +70,52 @@ if experimental:
 #        if miniconda_version == "":
 #            raise Exception("Can't find latest version for Miniconda3 on " \
 #                            + "repo " + repo_url)
+#
+#    miniconda_version = ""
+#
+#    experimental_versions_file = notebook_folder_experimental \
+#        + "/" + versions_file
+#    with open(experimental_versions_file) as f:
+#        exp_versions = f.readlines()
+#        for line in exp_versions:
+#            if "Miniconda" in line:
+#                miniconda_version = line.split('|')[2].strip()
+#
+#    if miniconda_version == "":
+#        raise Exception("Can't find Miniconda version in experimental " \
+#                        + "version file.")
+    base_container_sha_string = ""
+    conda_version_string = ""
+    conda_version_var = ""
+    conda_update_string = ""
+    miniconda_md5_string = ""
+    miniconda_version = "latest"
 
-    miniconda_version = ""
+#    for key, value in versions["packages"].items():
+#        substitutions.append(["{% " + key + "_version %}", ""])
 
-    experimental_versions_file = notebook_folder_experimental \
-        + "/" + versions_file
-    with open(experimental_versions_file) as f:
-        exp_versions = f.readlines()
-        for line in exp_versions:
-            if "Miniconda" in line:
-                miniconda_version = line.split('|')[2].strip()
+#    for key, value in versions["extensions"].items():
+#        substitutions.append(["{% " + key + "_version %}", ""])
+else:
+    conda_version = versions["packages"]["conda"]
+    miniconda_version = versions["framework"]["Miniconda"]
 
-    if miniconda_version = "":
-        raise Exception("Can't find Miniconda version in experimental " \
-                        + "version file.")
+    base_container = "nvidia/cuda:" + cuda_major + "." + cuda_minor \
+        + "-cudnn" + cudnn + "-devel"
+
+    sha_process = subprocess.run(
+        ("docker inspect --format='{{.RepoDigests}}' " +
+         base_container).split(),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=True)
+    sha_output = sha_process.stdout.decode()
+    base_container_sha = sha_output.split(':')[1].split(']')[0]
 
     miniconda_md5 = ""
+
+    repo_website = requests.get(repo_url)
+    repo_text = repo_website.text.split('\n')
 
     for idx, line in enumerate(repo_text):
         if "Miniconda3-" + miniconda_version + "-Linux-x86_64" in line:
@@ -114,6 +130,7 @@ if experimental:
 
     base_container_sha_string = "@sha256:" + base_container_sha
     conda_version_string = '="${CONDA_VERSION}.*"'
+    conda_version_var = "\nENV CONDA_VERSION=" + conda_version
     conda_update_string = "$CONDA_DIR/bin/conda " + \
         "update --all --quiet --yes &&"
     miniconda_md5_string = 'echo "' + miniconda_md5 + " " + \
@@ -126,31 +143,22 @@ if experimental:
     for key, value in versions["extensions"].items():
         # remove trailing version "v" from version number, e.g.: v0.12.0
         substitutions.append(["{% " + key + "_version %}", "@^" + value[1:]])
-else:
-    base_container_sha_string = ""
-    conda_version_string = ""
-    conda_update_string = ""
-    miniconda_md5_string = ""
-    miniconda_version = "latest"
 
-    for key, value in versions["packages"].items():
-        substitutions.append(["{% " + key + "_version %}", ""])
 
-    for key, value in versions["extensions"].items():
-        substitutions.append(["{% " + key + "_version %}", ""])
-
-substitutions += [
-    ["{% cuda_major %}", versions["framework"]["CUDA"].split('.')[0]],
-    ["{% cuda_minor %}", versions["framework"]["CUDA"].split('.')[1]],
-    ["{% cudnn %}", versions["framework"]["cuDNN"].split('.')[0]],
+# cuda versions should be replaced first,
+# because other packages might depend on it
+substitutions = [
+    ["{% cuda_major %}", cuda_major],
+    ["{% cuda_minor %}", cuda_minor],
+    ["{% cudnn %}", cudnn],
     ["{% sha256:base %}", base_container_sha_string],
     ["{% tag %}", tag],
     ["{% miniconda_version_var %}", "MINICONDA_VERSION=" + miniconda_version],
     ["{% miniconda_md5_check %}", miniconda_md5_string],
-    ["{% conda_version_var %}", "; CONDA_VERSION=" + conda_version],
+    ["{% conda_version_var %}", conda_version_var],
     ["{% conda_version_string %}", conda_version_string],
     ["{% conda_update %}", conda_update_string],
-]
+] + substitutions
 
 with open(template_file) as t:
     dockerfile_text = t.read()
@@ -158,14 +166,16 @@ with open(template_file) as t:
 for sub in substitutions:
     dockerfile_text = dockerfile_text.replace(sub[0], sub[1])
 
-if "{% " in dockerfile_text or " %}" in dockerfile_text:
-    raise Exception("Could not replace all placeholders from template " \
-                    + template_file)
-
 if experimental:
-    dockerfile = notebook_folder_experimental + "/Dockerfile"
-else:
-    dockerfile = notebook_folder_stable + "/Dockerfile"
+    dockerfile_text = re.sub('{% .+?_version %}','',dockerfile_text)
 
-with open(dockerfile, 'w') as outfile:
+
+for idx, line in enumerate(dockerfile_text.split('\n')):
+    if "{%" in line or "%}" in line:
+        raise Exception("Could not replace all placeholders from template \"" \
+                        + template_file + "\" in line " + str(idx) \
+                        + ":\n" + line)
+
+print('Writing new dockerfile "' + notebook_folder + "/Dockerfile" + '"')
+with open(notebook_folder + "/Dockerfile", 'w') as outfile:
     outfile.write(dockerfile_text)
