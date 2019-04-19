@@ -1,11 +1,10 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
-# Nvidia Cuda 10.0 cudnn7 devel Ubuntu 18.04 from 2019-03-20
-ARG BASE_CONTAINER=nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04@sha256:98ac68416131c3f0bf803a06e473b9bb6a3a175d2cf648c161e724eac4febf3c
+ARG BASE_CONTAINER=nvidia/cuda:10.0-cudnn7-devel@sha256:ead2a34e7d344731e0007822437f60310f3baaf331d4350f795c004aade64125
 FROM $BASE_CONTAINER
 
-LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
+LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
 ARG NB_USER="jovyan"
 ARG NB_UID="1000"
 ARG NB_GID="100"
@@ -64,15 +63,14 @@ RUN mkdir /home/$NB_USER/work && \
     fix-permissions /home/$NB_USER
 
 # Install conda as jovyan and check the md5 sum provided on the download site
-ENV MINICONDA_VERSION=4.5.12 \
-    CONDA_VERSION=4.6.7
+ENV MINICONDA_VERSION=4.5.12
+ENV CONDA_VERSION=4.6.12
 
 RUN cd /tmp && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
     echo "866ae9dff53ad0874e1d1a60b1ad1ef8 *Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
     /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
     rm Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
-    $CONDA_DIR/bin/conda config --system --prepend channels conda-forge && \
     $CONDA_DIR/bin/conda config --system --set auto_update_conda false && \
     $CONDA_DIR/bin/conda config --system --set show_channel_urls true && \
     $CONDA_DIR/bin/conda install --quiet --yes conda="${CONDA_VERSION}.*" && \
@@ -83,7 +81,7 @@ RUN cd /tmp && \
     fix-permissions /home/$NB_USER
 
 # Install Tini
-RUN conda install --quiet --yes 'tini=0.18.0' && \
+RUN conda install --quiet --yes 'tini==0.18.0' && \
     conda list tini | grep tini | tr -s ' ' | cut -d ' ' -f 1,2 >> $CONDA_DIR/conda-meta/pinned && \
     conda clean --all && \
     fix-permissions $CONDA_DIR && \
@@ -95,13 +93,12 @@ RUN conda install --quiet --yes 'tini=0.18.0' && \
 # Correct permissions
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
-RUN conda install -c conda-forge --quiet --yes \
-    'notebook=5.7.8' \
-    'jupyterhub=0.9.6' \
-    'jupyterlab=0.35.4' && \
+RUN conda install --quiet --yes -c conda-forge \
+    'notebook==5.7.8' \
+    'jupyterhub==0.9.6' \
+    'jupyterlab==0.35.4' && \
     conda clean --all && \
     jupyter labextension install @jupyterlab/hub-extension@^0.12.0 && \
-#    jupyter labextension install @jupyterlab/hub-extension && \
     npm cache clean --force && \
     jupyter notebook --generate-config && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
