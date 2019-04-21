@@ -65,6 +65,9 @@ dockerfiles-stable:	$(foreach I,$(ALL_IMAGES),dockerfile/$(I) ) ## generate vers
 
 dockerfiles-experimental:	$(foreach I,$(ALL_IMAGES),dockerfile/$(I)\:experimental ) ## generate experimental dockerfiles, only needed if you tweaked the templates
 
+disable/%: ## disable an image, e.g. for incompatibility reasons
+	./dev/disable_image.py $(notdir $@) $(DATE_STRING) $(CUDNN)
+
 #TODO
 
 #build-test-stable: $(foreach I,$(ALL_IMAGES),build/$(I) test/$(I) ) ## build and test all stable stacks
