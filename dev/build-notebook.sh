@@ -80,6 +80,7 @@ docker run --rm -it -w /workdir \
   "$owner/$image_name_with_tag" \
   bash -c "./$print_versions_script" \
   | sed "s/{'framework': {/{'framework': {'Miniconda': '$miniconda_version', /" \
+  | sed "s, bash -c ./$print_versions_script,," \
   > "$full_folder"/"$versions_file"
 
 # generate readme including version numbers
