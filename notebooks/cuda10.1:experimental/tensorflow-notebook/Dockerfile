@@ -4,10 +4,4 @@ ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda10.1:experimental
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
-
-# Install Tensorflow
-RUN pip install --no-cache-dir \
-      'tensorflow-gpu' && \
-      rm -rf /home/$NB_USER/.local && \
-      fix-permissions $CONDA_DIR && \
-      fix-permissions /home/$NB_USER
+ENTRYPOINT ["echo", "### WARNING\nAs of 2019-04-19, tensorflow is not yet compatible with CUDA 10.1.\nPlease use \"tensorflow-notebook-cuda10.0\" instead."]
