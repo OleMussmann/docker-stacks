@@ -29,20 +29,45 @@ notebook_folder_stable = "notebooks/cuda" \
 
 template_file = "notebook-templates/" + notebook_root + ".j2"
 
+with open(template_file) as t:
+    dockerfile_text = t.read()
+
 if ":experimental" in notebook_name:
     experimental = True
     tag = "experimental"
     notebook_folder = notebook_folder_experimental
 else:
     experimental = False
-    tag = date_string
+    tag_array = notebook_name.split(':')
+    if len(tag_array) == 2:
+        tag = tag_array[-1]
+    elif len(tag_array) == 1:
+        tag = date_string
+    else:
+        raise SyntaxError("Notebook name invalid, multiple tags detected.")
     notebook_folder = notebook_folder_stable
 
 # Use experimental versions_file, also for stable branch. We want to inherit
 # the new versions to stable after testing the experimental containers.
 with open(notebook_folder_experimental + "/" + versions_file) as f:
     content = f.read()
-    versions = ast.literal_eval(content)
+
+    disabling = False
+    if content.startswith("### WARNING"):
+        versions = {}
+        versions["packages"] = {"conda": "0"}
+        versions["extensions"] = {"none": "0"}
+        versions["framework"] = {"Miniconda": "0"}
+        disabling = True
+
+        if not experimental:
+            content = content.replace('\n', '\\n').replace('"', '\\"')
+            # only use until line 7
+            # use ENTRYPOINT to make container issue warning
+            dockerfile_text = '\n'.join(dockerfile_text.split('\n')[:7])
+            dockerfile_text += 'ENTRYPOINT ["echo", "' + content + '"]'
+    else:
+        versions = ast.literal_eval(content)
 
 substitutions = []
 
@@ -114,19 +139,20 @@ else:
 
     miniconda_md5 = ""
 
-    repo_website = requests.get(repo_url)
-    repo_text = repo_website.text.split('\n')
+    if not disabling:
+        repo_website = requests.get(repo_url)
+        repo_text = repo_website.text.split('\n')
 
-    for idx, line in enumerate(repo_text):
-        if "Miniconda3-" + miniconda_version + "-Linux-x86_64" in line:
-            miniconda_md5 = repo_text[idx + 3].split('>')[1].split('<')[0]
+        for idx, line in enumerate(repo_text):
+            if "Miniconda3-" + miniconda_version + "-Linux-x86_64" in line:
+                miniconda_md5 = repo_text[idx + 3].split('>')[1].split('<')[0]
 
-    if miniconda_md5 == "":
-        raise Exception("Can't find the Miniconda version \"" \
-                        + miniconda_version \
-                        + "\" on the repo website " \
-                        + repo_url \
-                        + " Please check the repo manually.")
+        if miniconda_md5 == "":
+            raise Exception("Can't find the Miniconda version \"" \
+                            + miniconda_version \
+                            + "\" on the repo website " \
+                            + repo_url \
+                            + " Please check the repo manually.")
 
     base_container_sha_string = "@sha256:" + base_container_sha
     conda_version_string = '="${CONDA_VERSION}.*"'
@@ -160,15 +186,11 @@ substitutions = [
     ["{% conda_update %}", conda_update_string],
 ] + substitutions
 
-with open(template_file) as t:
-    dockerfile_text = t.read()
-
 for sub in substitutions:
     dockerfile_text = dockerfile_text.replace(sub[0], sub[1])
 
 if experimental:
     dockerfile_text = re.sub('{% .+?_version %}','',dockerfile_text)
-
 
 for idx, line in enumerate(dockerfile_text.split('\n')):
     if "{%" in line or "%}" in line:
