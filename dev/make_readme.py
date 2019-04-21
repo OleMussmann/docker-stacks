@@ -14,7 +14,12 @@ miniconda_version = sys.argv[3]
 
 with open(notebook_folder + "/" + versions_file) as f:
     content = f.read()
-    versions = ast.literal_eval(content)
+    if content.startswith("### WARNING"):
+        with open(notebook_folder + "/README.md", 'w') as f:
+            f.write(content)
+        exit()
+    else:
+        versions = ast.literal_eval(content)
 
 possible_deep_learning_packages = ["fastai", "pytorch", "tensorflow", "keras", "mxnet"]
 deep_learning_packages = []
