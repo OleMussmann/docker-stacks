@@ -83,5 +83,4 @@ docker run --rm -it -w /workdir \
 
 # generate readme including version numbers
 echo "generating README.md in $full_folder"
-"$dev_folder"/"$make_readme_script" \
-  "$template_folder"/"$notebook_name".j2 "$full_folder" $miniconda_version
+"$dev_folder"/"$make_readme_script" "$full_folder" "$miniconda_version"

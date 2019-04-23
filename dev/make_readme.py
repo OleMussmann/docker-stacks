@@ -8,9 +8,8 @@ import sys
 
 versions_file = "versions.dict"
 
-template_file = sys.argv[1]
-notebook_folder = sys.argv[2]
-miniconda_version = sys.argv[3]
+notebook_folder = sys.argv[1]
+miniconda_version = sys.argv[2]
 
 with open(notebook_folder + "/" + versions_file) as f:
     content = f.read()
