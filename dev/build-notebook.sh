@@ -39,13 +39,11 @@ if [[ "$image_name_with_tag" == *":experimental" ]] ; then
     "\"$cuda:experimental/$notebook_name\""
 
   if [[ "$notebook_name" == "base-notebook" ]] ; then
-#    docker build $dargs --no-cache --pull --rm --force-rm \
-    docker build $dargs --pull --rm --force-rm \
+    docker build $dargs --no-cache --pull --rm --force-rm \
       -t "$owner/$image_name_with_tag" \
       "$full_folder"
   else
-#    docker build $dargs --no-cache --rm --force-rm \
-    docker build $dargs --rm --force-rm \
+    docker build $dargs --no-cache --rm --force-rm \
       -t "$owner/$image_name_with_tag" \
       "$full_folder"
   fi
