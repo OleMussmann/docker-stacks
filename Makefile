@@ -4,7 +4,7 @@
 
 SHELL:=bash
 OWNER:=isbjornlabs
-DATE_STRING:=$(shell date +%Y%m%d)
+DATE_STRING:=$(shell date +%Y-%m-%d)
 
 # Need to list the images in build dependency order
 ALL_IMAGE_FLAVOURS:=base-notebook \
@@ -58,7 +58,7 @@ dev/%: PORT?=8888
 dev/%: ## run a foreground container for a stack
 	docker run -it --rm -p $(PORT):8888 $(DARGS) $(OWNER)/$(notdir $@) $(ARGS)
 
-dockerfile/%: ## generate new dockerfiles for a stack
+dockerfile/%: ## generate a new dockerfile for a stack, alse enabling a disabled image
 	./dev/make_dockerfile.py $(notdir $@) $(DATE_STRING) $(CUDNN)
 
 dockerfiles-stable:	$(foreach I,$(ALL_IMAGES),dockerfile/$(I) ) ## generate version-pinned dockerfiles using version numbers from experimental
