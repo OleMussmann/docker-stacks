@@ -1,8 +1,8 @@
 ### Framework
 | name | version |
 |-|-|
-| Python | 3.7.1 |
-| Miniconda | 4.5.12 |
+| Python | 3.7.3 |
+| Miniconda | 4.6.14 |
 | CUDA | 10.0.130 |
 | cuDNN | 7.5.0 |
 | NCCL | 2.4.2 |
@@ -23,12 +23,11 @@
 | bleach | 3.1.0 |
 | ca-certificates | 2019.3.9 |
 | certifi | 2019.3.9 |
-| cffi | 1.11.5 |
+| cffi | 1.12.2 |
 | chardet | 3.0.4 |
-| conda | 4.6.12 |
-| conda-env | 2.6.0 |
+| conda | 4.6.14 |
 | configurable-http-proxy | 1.3.0 |
-| cryptography | 2.4.2 |
+| cryptography | 2.6.1 |
 | decorator | 4.4.0 |
 | defusedxml | 0.5.0 |
 | entrypoints | 0.3 |
@@ -46,7 +45,7 @@
 | jupyterlab_server | 0.2.0 |
 | krb5 | 1.16.1 |
 | libcurl | 7.64.0 |
-| libedit | 3.1.20170329 |
+| libedit | 3.1.20181209 |
 | libffi | 3.2.1 |
 | libgcc-ng | 8.2.0 |
 | libsodium | 1.0.16 |
@@ -67,7 +66,7 @@
 | parso | 0.4.0 |
 | pexpect | 4.7.0 |
 | pickleshare | 0.7.5 |
-| pip | 18.1 |
+| pip | 19.0.3 |
 | prometheus_client | 0.6.0 |
 | prompt_toolkit | 2.0.9 |
 | ptyprocess | 0.6.0 |
@@ -75,10 +74,10 @@
 | pycparser | 2.19 |
 | pycurl | 7.43.0.2 |
 | pygments | 2.3.1 |
-| pyopenssl | 18.0.0 |
+| pyopenssl | 19.0.0 |
 | pyrsistent | 0.14.11 |
 | pysocks | 1.6.8 |
-| python | 3.7.1 |
+| python | 3.7.3 |
 | python-dateutil | 2.8.0 |
 | python-editor | 1.0.4 |
 | python-oauth2 | 1.1.0 |
@@ -87,10 +86,10 @@
 | requests | 2.21.0 |
 | ruamel_yaml | 0.15.46 |
 | send2trash | 1.5.0 |
-| setuptools | 40.6.3 |
+| setuptools | 41.0.0 |
 | six | 1.12.0 |
 | sqlalchemy | 1.3.3 |
-| sqlite | 3.26.0 |
+| sqlite | 3.27.2 |
 | terminado | 0.8.2 |
 | testpath | 0.4.2 |
 | tini | 0.18.0 |
@@ -100,10 +99,10 @@
 | urllib3 | 1.24.1 |
 | wcwidth | 0.1.7 |
 | webencodings | 0.5.1 |
-| wheel | 0.32.3 |
+| wheel | 0.33.1 |
 | xz | 5.2.4 |
 | yaml | 0.1.7 |
-| zeromq | 4.2.5 |
+| zeromq | 4.3.1 |
 | zlib | 1.2.11 |
 
 ### System Programs

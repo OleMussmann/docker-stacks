@@ -26,7 +26,6 @@
 | cffi | 1.12.2 |
 | chardet | 3.0.4 |
 | conda | 4.6.14 |
-| conda-env | 2.6.0 |
 | configurable-http-proxy | 1.3.0 |
 | cryptography | 2.6.1 |
 | decorator | 4.4.0 |

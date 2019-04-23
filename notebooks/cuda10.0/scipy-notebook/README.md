@@ -33,7 +33,6 @@
 | click | 7.0 |
 | cloudpickle | 0.8.1 |
 | conda | 4.6.14 |
-| conda-env | 2.6.0 |
 | configurable-http-proxy | 1.3.0 |
 | cryptography | 2.6.1 |
 | cycler | 0.10.0 |

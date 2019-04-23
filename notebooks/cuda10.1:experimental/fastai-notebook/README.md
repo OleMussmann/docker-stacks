@@ -1,8 +1,8 @@
 ### Framework
 | name | version |
 |-|-|
-| Python | 3.7.1 |
-| Miniconda | 4.5.12 |
+| Python | 3.7.3 |
+| Miniconda | 4.6.14 |
 | CUDA | 10.1.105 |
 | cuDNN | 7.5.0 |
 | NCCL | 2.4.2 |
@@ -29,14 +29,13 @@
 | bottleneck | 1.2.1 |
 | ca-certificates | 2019.3.9 |
 | certifi | 2019.3.9 |
-| cffi | 1.11.5 |
+| cffi | 1.12.2 |
 | chardet | 3.0.4 |
 | click | 7.0 |
 | cloudpickle | 0.8.1 |
-| conda | 4.6.12 |
-| conda-env | 2.6.0 |
+| conda | 4.6.14 |
 | configurable-http-proxy | 1.3.0 |
-| cryptography | 2.4.2 |
+| cryptography | 2.6.1 |
 | cudatoolkit | 10.0.130 |
 | cycler | 0.10.0 |
 | cymem | 2.0.2 |
@@ -86,7 +85,7 @@
 | libblas | 3.8.0 |
 | libcblas | 3.8.0 |
 | libcurl | 7.64.0 |
-| libedit | 3.1.20170329 |
+| libedit | 3.1.20181209 |
 | libffi | 3.2.1 |
 | libgcc-ng | 8.2.0 |
 | libgfortran-ng | 7.3.0 |
@@ -143,7 +142,7 @@
 | pickleshare | 0.7.5 |
 | pillow | 6.0.0 |
 | pillow-simd | 5.3.0.post1 |
-| pip | 18.1 |
+| pip | 19.0.3 |
 | plac | 0.9.6 |
 | preshed | 2.0.1 |
 | prometheus_client | 0.6.0 |
@@ -155,12 +154,12 @@
 | pycparser | 2.19 |
 | pycurl | 7.43.0.2 |
 | pygments | 2.3.1 |
-| pyopenssl | 18.0.0 |
+| pyopenssl | 19.0.0 |
 | pyparsing | 2.4.0 |
 | pyqt | 5.9.2 |
 | pyrsistent | 0.14.11 |
 | pysocks | 1.6.8 |
-| python | 3.7.1 |
+| python | 3.7.3 |
 | python-dateutil | 2.8.0 |
 | python-editor | 1.0.4 |
 | python-oauth2 | 1.1.0 |
@@ -179,14 +178,14 @@
 | scipy | 1.2.1 |
 | seaborn | 0.9.0 |
 | send2trash | 1.5.0 |
-| setuptools | 40.6.3 |
+| setuptools | 41.0.0 |
 | sip | 4.19.8 |
 | six | 1.12.0 |
 | sortedcontainers | 2.1.0 |
 | soupsieve | 1.8 |
 | spacy | 2.0.18 |
 | sqlalchemy | 1.3.3 |
-| sqlite | 3.26.0 |
+| sqlite | 3.27.2 |
 | statsmodels | 0.9.0 |
 | sympy | 1.4 |
 | tblib | 1.3.2 |
@@ -206,13 +205,13 @@
 | vincent | 0.4.4 |
 | wcwidth | 0.1.7 |
 | webencodings | 0.5.1 |
-| wheel | 0.32.3 |
+| wheel | 0.33.1 |
 | widgetsnbextension | 3.4.2 |
 | wrapt | 1.10.11 |
 | xlrd | 1.2.0 |
 | xz | 5.2.4 |
 | yaml | 0.1.7 |
-| zeromq | 4.2.5 |
+| zeromq | 4.3.1 |
 | zict | 0.1.4 |
 | zlib | 1.2.11 |
 | zstd | 1.3.7 |
@@ -285,7 +284,7 @@
 | dictionaries-common | 1.27.2 |
 | diffutils | 1:3.6-1 |
 | dirmngr | 2.2.4-1ubuntu1.2 |
-| distro-info-data | 0.37ubuntu0.3 |
+| distro-info-data | 0.37ubuntu0.4 |
 | dpkg | 1.19.0.5ubuntu2.1 |
 | dpkg-dev | 1.19.0.5ubuntu2.1 |
 | e2fsprogs | 1.44.1-1ubuntu1.1 |
