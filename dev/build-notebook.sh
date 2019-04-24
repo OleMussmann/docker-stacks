@@ -37,7 +37,7 @@ if [[ "$image_name_with_tag" == *":experimental" ]] ; then
   full_folder="./notebooks/$cuda:experimental/$notebook_name"
   dockerfile_content=$(cat $full_folder/Dockerfile)
 
-  if [[ ${dockerfile_content:0:10} == '###WARNING' ]]; then
+  if [[ ${dockerfile_content:0:11} == '### WARNING' ]]; then
     echo "experimental image \"$image_name_with_tag\" from folder" \
       "\"$cuda:experimental/$notebook_name\" is disabled, skipping build"
     exit
@@ -69,7 +69,7 @@ if [[ "$image_name_with_tag" == *":experimental" ]] ; then
 else
   full_folder="./notebooks/$cuda/$notebook_name"
   dockerfile_content=$(cat $full_folder/Dockerfile)
-  if [[ ${dockerfile_content:0:10} == '###WARNING' ]]; then
+  if [[ ${dockerfile_content:0:11} == '### WARNING' ]]; then
     echo "experimental image \"$image_name_with_tag\" from folder" \
       "\"$cuda:experimental/$notebook_name\" is disabled, skipping build"
     exit

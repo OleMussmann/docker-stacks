@@ -37,7 +37,7 @@ while user_input != "":
       user_input = input("> ")
       disable_message.append(user_input)
 
-disable_message_string = """###WARNING
+disable_message_string = """### WARNING
 This image is disabled.
 
 """ + '\n'.join(disable_message[:-1])
