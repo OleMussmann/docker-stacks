@@ -2,7 +2,7 @@
 | name | version |
 |-|-|
 | Python | 3.7.3 |
-| Miniconda | version |
+| Miniconda | 4.6.14 |
 | CUDA | 9.2.148 |
 | cuDNN | 7.4.1 |
 | NCCL | 2.3.7 |
