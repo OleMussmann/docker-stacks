@@ -80,8 +80,8 @@ else
       -t "$owner/$image_name_with_tag" \
       -t "$owner/$image_name_without_tag":latest \
       "$full_folder"
-    experimental_readme=$(cat ./notebooks/$cuda:experimental/base-notebook/README.md)
-    miniconda_version=$(echo $experimental_readme | grep "Miniconda" \
+    experimental_readme="$(cat ./notebooks/$cuda:experimental/$notebook_name/README.md)"
+    miniconda_version=$(echo "$experimental_readme" | grep "Miniconda" \
       | awk -F'|' '{print $3}' | xargs)
   fi
 fi
