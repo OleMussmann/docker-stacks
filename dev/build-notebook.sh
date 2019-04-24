@@ -5,7 +5,7 @@ set -e
 
 function usage(){
   echo "Usage:"
-  echo "  $0 NOTEBOOK-NAME:TAG [DARGS]"
+  echo "  $0 NOTEBOOK-NAME:TAG OWNER [DARGS]"
   echo
   echo "Builds a docker image with optional DARGS. This is a companion"
   echo "script to docker-stacks."
@@ -35,40 +35,55 @@ notebook_name="${image_name_without_tag/-$cuda/}"
 
 if [[ "$image_name_with_tag" == *":experimental" ]] ; then
   full_folder="./notebooks/$cuda:experimental/$notebook_name"
-  echo "building experimental image \"$image_name_with_tag\" from folder" \
-    "\"$cuda:experimental/$notebook_name\""
+  dockerfile_content=$(cat $full_folder/Dockerfile)
 
-  if [[ "$notebook_name" == "base-notebook" ]] ; then
-    docker build $dargs --no-cache --pull --rm --force-rm \
-      -t "$owner/$image_name_with_tag" \
-      "$full_folder"
+  if [[ ${dockerfile_content:0:10} == '###WARNING' ]]; then
+    echo "experimental image \"$image_name_with_tag\" from folder" \
+      "\"$cuda:experimental/$notebook_name\" is disabled, skipping build"
+    exit
   else
-    docker build $dargs --no-cache --rm --force-rm \
-      -t "$owner/$image_name_with_tag" \
-      "$full_folder"
-  fi
+    echo "building experimental image \"$image_name_with_tag\" from folder" \
+      "\"$cuda:experimental/$notebook_name\""
 
-  # get the most recent miniconda version number (that corresponds to 'latest')
-  repo=$(curl -s https://repo.continuum.io/miniconda/)
-  miniconda_latest_sha=$(echo "$repo" | \
-    grep -A3 Miniconda3-latest-Linux-x86_64.sh | tail -n1 | \
-    sed -e 's/<[^>]*>//g' | sed -e 's/ //g')
-  miniconda_most_recent_line=$(echo "$repo" | grep -B3 "$miniconda_latest_sha" \
-    | grep Miniconda | grep -v latest)
-  miniconda_version=$(echo $miniconda_most_recent_line \
-    | awk -F'"' '{print $2}' | awk -F'-' '{print $2}')
+    if [[ "$notebook_name" == "base-notebook" ]] ; then
+      docker build $dargs --no-cache --pull --rm --force-rm \
+        -t "$owner/$image_name_with_tag" \
+        "$full_folder"
+    else
+      docker build $dargs --no-cache --rm --force-rm \
+        -t "$owner/$image_name_with_tag" \
+        "$full_folder"
+    fi
+
+    # get the most recent miniconda version number (that corresponds to 'latest')
+    repo=$(curl -s https://repo.continuum.io/miniconda/)
+    miniconda_latest_sha=$(echo "$repo" | \
+      grep -A3 Miniconda3-latest-Linux-x86_64.sh | tail -n1 | \
+      sed -e 's/<[^>]*>//g' | sed -e 's/ //g')
+    miniconda_most_recent_line=$(echo "$repo" | grep -B3 "$miniconda_latest_sha" \
+      | grep Miniconda | grep -v latest)
+    miniconda_version=$(echo $miniconda_most_recent_line \
+      | awk -F'"' '{print $2}' | awk -F'-' '{print $2}')
+  fi
 
 else
   full_folder="./notebooks/$cuda/$notebook_name"
-  echo "building version-pinned image \"$image_name_with_tag\" from folder" \
-    "\"$cuda/$notebook_name\""
-  docker build $dargs --rm --force-rm \
-    -t "$owner/$image_name_with_tag" \
-    -t "$owner/$image_name_without_tag":latest \
-    "$full_folder"
-  experimental_readme=$(cat ./notebooks/$cuda:experimental/base-notebook/README.md)
-  miniconda_version=$(echo $experimental_readme | grep "Miniconda" \
-    | awk -F'|' '{print $3}' | xargs)
+  dockerfile_content=$(cat $full_folder/Dockerfile)
+  if [[ ${dockerfile_content:0:10} == '###WARNING' ]]; then
+    echo "experimental image \"$image_name_with_tag\" from folder" \
+      "\"$cuda:experimental/$notebook_name\" is disabled, skipping build"
+    exit
+  else
+    echo "building version-pinned image \"$image_name_with_tag\" from folder" \
+      "\"$cuda/$notebook_name\""
+    docker build $dargs --rm --force-rm \
+      -t "$owner/$image_name_with_tag" \
+      -t "$owner/$image_name_without_tag":latest \
+      "$full_folder"
+    experimental_readme=$(cat ./notebooks/$cuda:experimental/base-notebook/README.md)
+    miniconda_version=$(echo $experimental_readme | grep "Miniconda" \
+      | awk -F'|' '{print $3}' | xargs)
+  fi
 fi
 
 # extract version numbers
