@@ -14,7 +14,7 @@ miniconda_version = sys.argv[2]
 with open(notebook_folder + "/" + versions_file) as f:
     content = f.read()
     if content.startswith("### WARNING"):
-        print('Image in folder "' + notebook_folder + " disabled, skipping.')
+        print('Image in folder "' + notebook_folder + '" disabled, skipping.')
         exit()
     else:
         versions = ast.literal_eval(content)
