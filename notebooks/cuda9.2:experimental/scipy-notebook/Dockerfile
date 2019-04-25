@@ -26,32 +26,32 @@ USER $NB_UID
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
-    'conda-forge::blas=*=openblas' \
-    'ipywidgets' \
-    'pandas' \
-    'numexpr' \
-    'matplotlib' \
-    'scipy' \
-    'seaborn' \
-    'scikit-learn' \
-    'scikit-image' \
-    'sympy' \
-    'cython' \
-    'patsy' \
-    'statsmodels' \
-    'cloudpickle' \
-    'dill' \
-    'dask' \
-    'numba' \
-    'bokeh' \
-    'sqlalchemy' \
-    'hdf5' \
-    'h5py' \
-    'vincent' \
     'beautifulsoup4' \
+    'bokeh' \
+    'cloudpickle' \
+    'conda-forge::blas==openblas' \
+    'cython' \
+    'dask' \
+    'dill' \
+    'h5py' \
+    'hdf5' \
+    'ipywidgets' \
+    'matplotlib' \
+    'numba' \
+    'numexpr' \
+    'pandas' \
+    'patsy' \
     'protobuf' \
-    'xlrd'  && \
-    conda remove --quiet --yes --force qt pyqt && \
+    'scipy' \
+    'scikit-image' \
+    'scikit-learn' \
+    'seaborn' \
+    'sqlalchemy' \
+    'statsmodels' \
+    'sympy' \
+    'vincent' \
+    'xlrd' \
+    && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \

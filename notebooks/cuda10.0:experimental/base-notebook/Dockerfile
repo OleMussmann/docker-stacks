@@ -1,6 +1,5 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-
 ARG BASE_CONTAINER=nvidia/cuda:10.0-cudnn7-devel
 FROM $BASE_CONTAINER
 
@@ -16,12 +15,12 @@ USER root
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
-    wget \
     bzip2 \
     ca-certificates \
-    sudo \
-    locales \
     fonts-liberation \
+    locales \
+    sudo \
+    wget \
  && rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
@@ -93,10 +92,10 @@ RUN conda install --quiet --yes 'tini' && \
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
 RUN conda install --quiet --yes -c conda-forge \
-    'notebook' \
     'jupyterhub' \
-    'jupyterlab' && \
-    conda clean --all && \
+    'jupyterlab' \
+    'notebook' \
+    && conda clean --all && \
     jupyter labextension install @jupyterlab/hub-extension && \
     npm cache clean --force && \
     jupyter notebook --generate-config && \
