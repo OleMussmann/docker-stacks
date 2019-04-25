@@ -26,32 +26,32 @@ USER $NB_UID
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
-    'conda-forge::blas=*=openblas' \
-    'ipywidgets{% ipywidgets_version %}' \
-    'pandas{% pandas_version %}' \
-    'numexpr{% numexpr_version %}' \
-    'matplotlib{% matplotlib_version %}' \
-    'scipy{% scipy_version %}' \
-    'seaborn{% seaborn_version %}' \
-    'scikit-learn{% scikit-learn_version %}' \
-    'scikit-image{% scikit-image_version %}' \
-    'sympy{% sympy_version %}' \
-    'cython{% cython_version %}' \
-    'patsy{% patsy_version %}' \
-    'statsmodels{% statsmodels_version %}' \
-    'cloudpickle{% cloudpickle_version %}' \
-    'dill{% dill_version %}' \
-    'dask{% dask_version %}' \
-    'numba{% numba_version %}' \
-    'bokeh{% bokeh_version %}' \
-    'sqlalchemy{% sqlalchemy_version %}' \
-    'hdf5{% hdf5_version %}' \
-    'h5py{% h5py_version %}' \
-    'vincent{% vincent_version %}' \
     'beautifulsoup4{% beautifulsoup4_version %}' \
+    'bokeh{% bokeh_version %}' \
+    'cloudpickle{% cloudpickle_version %}' \
+    'conda-forge::blas={% blas_version %}=openblas' \
+    'cython{% cython_version %}' \
+    'dask{% dask_version %}' \
+    'dill{% dill_version %}' \
+    'h5py{% h5py_version %}' \
+    'hdf5{% hdf5_version %}' \
+    'ipywidgets{% ipywidgets_version %}' \
+    'matplotlib{% matplotlib_version %}' \
+    'numba{% numba_version %}' \
+    'numexpr{% numexpr_version %}' \
+    'pandas{% pandas_version %}' \
+    'patsy{% patsy_version %}' \
     'protobuf{% protobuf_version %}' \
-    'xlrd{% xlrd_version %}'  && \
-    conda remove --quiet --yes --force qt pyqt && \
+    'scipy{% scipy_version %}' \
+    'scikit-image{% scikit-image_version %}' \
+    'scikit-learn{% scikit-learn_version %}' \
+    'seaborn{% seaborn_version %}' \
+    'sqlalchemy{% sqlalchemy_version %}' \
+    'statsmodels{% statsmodels_version %}' \
+    'sympy{% sympy_version %}' \
+    'vincent{% vincent_version %}' \
+    'xlrd{% xlrd_version %}' \
+    && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \

@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     libxext-dev \
     libxrender1 \
     lmodern \
+    nano \
     netcat \
     pandoc \
     python-dev \
@@ -28,7 +29,6 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     texlive-latex-extra \
     texlive-xetex \
     unzip \
-    nano \
     && rm -rf /var/lib/apt/lists/*
 
 # Switch back to jovyan to avoid accidental container runs as root
