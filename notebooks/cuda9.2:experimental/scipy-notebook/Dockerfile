@@ -29,7 +29,7 @@ RUN conda install --quiet --yes \
     'beautifulsoup4' \
     'bokeh' \
     'cloudpickle' \
-    'conda-forge::blas==openblas' \
+    'conda-forge::blas=*=openblas' \
     'cython' \
     'dask' \
     'dill' \
