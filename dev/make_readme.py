@@ -32,7 +32,7 @@ for dl in possible_deep_learning_packages:
 
 deep_learning_string = ""
 for deep_learning_package in deep_learning_packages:
-    new_line = "| " + deep_learning_package[0] +
+    new_line = "| " + deep_learning_package[0] + \
               " | " + deep_learning_package[1] + " |\n"
     deep_learning_string += new_line
 
