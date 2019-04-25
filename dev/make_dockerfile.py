@@ -146,6 +146,7 @@ for sub in substitutions:
     dockerfile_text = dockerfile_text.replace(sub[0], sub[1])
 
 if experimental:
+    dockerfile_text = re.sub('{% blas_version %}','*',dockerfile_text)
     dockerfile_text = re.sub('{% .+?_version %}','',dockerfile_text)
 
 for idx, line in enumerate(dockerfile_text.split('\n')):
