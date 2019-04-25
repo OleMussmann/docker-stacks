@@ -58,7 +58,7 @@ dev/%: PORT?=8888
 dev/%: ## run a foreground container for a stack
 	docker run -it --rm -p $(PORT):8888 $(DARGS) $(OWNER)/$(notdir $@) $(ARGS)
 
-dockerfile/%: ## generate a new dockerfile for a stack, alse enabling a disabled image
+dockerfile/%: ## generate a new dockerfile for a stack, also enabling a disabled image
 	./dev/make_dockerfile.py $(notdir $@) $(DATE_STRING) $(CUDNN)
 
 dockerfiles-stable:	$(foreach I,$(ALL_IMAGES),dockerfile/$(I) ) ## generate version-pinned dockerfiles using version numbers from experimental
