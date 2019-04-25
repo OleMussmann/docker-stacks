@@ -40,7 +40,7 @@ while user_input != "":
 disable_message_string = """### WARNING
 This image is disabled.
 
-""" + '\n'.join(disable_message[:-1])
+""" + '\n'.join(disable_message)
 
 print('Disabling "Dockerfile" of image "' + notebook_name + '"')
 with open(notebook_folder + "/Dockerfile", 'w') as outfile:

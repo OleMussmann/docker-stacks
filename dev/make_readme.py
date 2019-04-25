@@ -14,13 +14,16 @@ miniconda_version = sys.argv[2]
 with open(notebook_folder + "/" + versions_file) as f:
     content = f.read()
     if content.startswith("### WARNING"):
-        with open(notebook_folder + "/README.md", 'w') as f:
-            f.write(content)
+        print('Image in folder "' + notebook_folder + " disabled, skipping.')
         exit()
     else:
         versions = ast.literal_eval(content)
 
-possible_deep_learning_packages = ["fastai", "pytorch", "tensorflow", "keras", "mxnet"]
+possible_deep_learning_packages = ["fastai",
+                                   "pytorch",
+                                   "tensorflow",
+                                   "keras",
+                                   "mxnet"]
 deep_learning_packages = []
 for dl in possible_deep_learning_packages:
     for package in versions["packages"]:
@@ -29,7 +32,8 @@ for dl in possible_deep_learning_packages:
 
 deep_learning_string = ""
 for deep_learning_package in deep_learning_packages:
-    new_line = "| " + deep_learning_package[0] + " | " + deep_learning_package[1] + " |\n"
+    new_line = "| " + deep_learning_package[0] +
+              " | " + deep_learning_package[1] + " |\n"
     deep_learning_string += new_line
 
 extensions_string = ""

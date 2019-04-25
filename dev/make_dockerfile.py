@@ -47,68 +47,10 @@ else:
         raise SyntaxError("Notebook name invalid, multiple tags detected.")
     notebook_folder = notebook_folder_stable
 
-# Use experimental versions_file, also for stable branch. We want to inherit
-# the new versions to stable after testing the experimental containers.
-with open(notebook_folder_experimental + "/" + versions_file) as f:
-    content = f.read()
-
-    disabling = False
-    if content.startswith("### WARNING"):
-        versions = {}
-        versions["packages"] = {"conda": "0"}
-        versions["extensions"] = {"none": "0"}
-        versions["framework"] = {"Miniconda": "0"}
-        disabling = True
-
-        if not experimental:
-            content = content.replace('\n', '\\n').replace('"', '\\"')
-            # only use until line 7
-            # use ENTRYPOINT to make container issue warning
-            dockerfile_text = '\n'.join(dockerfile_text.split('\n')[:7])
-            dockerfile_text += 'ENTRYPOINT ["echo", "' + content + '"]'
-    else:
-        versions = ast.literal_eval(content)
 
 substitutions = []
 
 if experimental:
-#    # get lastest miniconda version
-#    if miniconda_version == "":
-#        sha_latest = ""
-#        latest_names = []
-#        latest_miniconda_version = ""
-#        for idx, line in enumerate(repo_text):
-#            if "Miniconda3-latest-Linux-x86_64" in line:
-#                sha_latest = repo_text[idx + 3]
-#        if sha_latest == "":
-#            raise Exception("Can't find latest version for Miniconda3 on " \
-#                            + "repo " + repo_url)
-#        for idx, line in enumerate(repo_text):
-#            if line == sha_latest:
-#                latest_names.append(repo_text[idx - 3])
-#        if latest_names == []:
-#            raise Exception("Can't find latest version for Miniconda3 on " \
-#                            + "repo " + repo_url)
-#        for latest_name in latest_names:
-#            if latest_name.split('-')[1] != "latest":
-#                miniconda_version = latest_name.split('-')[1]
-#        if miniconda_version == "":
-#            raise Exception("Can't find latest version for Miniconda3 on " \
-#                            + "repo " + repo_url)
-#
-#    miniconda_version = ""
-#
-#    experimental_versions_file = notebook_folder_experimental \
-#        + "/" + versions_file
-#    with open(experimental_versions_file) as f:
-#        exp_versions = f.readlines()
-#        for line in exp_versions:
-#            if "Miniconda" in line:
-#                miniconda_version = line.split('|')[2].strip()
-#
-#    if miniconda_version == "":
-#        raise Exception("Can't find Miniconda version in experimental " \
-#                        + "version file.")
     base_container_sha_string = ""
     conda_version_string = ""
     conda_version_var = ""
@@ -116,12 +58,26 @@ if experimental:
     miniconda_md5_string = ""
     miniconda_version = "latest"
 
-#    for key, value in versions["packages"].items():
-#        substitutions.append(["{% " + key + "_version %}", ""])
-
-#    for key, value in versions["extensions"].items():
-#        substitutions.append(["{% " + key + "_version %}", ""])
 else:
+    # Use experimental versions_file, also for stable branch. We want to inherit
+    # the new versions to stable after testing the experimental containers.
+    with open(notebook_folder_experimental + "/" + versions_file) as f:
+        content = f.read()
+
+        disabling = False
+        if content.startswith("### WARNING"):
+            print('Experimental image disabled. Writing warning to '
+                  + 'dockerfile "' + notebook_folder + "/Dockerfile" + '", '
+                  + '"README.md" and "' + versions_file + '".')
+            for file in [notebook_folder + "/Dockerfile",
+                         notebook_folder + "/README.md",
+                         notebook_folder + "/" + versions_file]:
+                with open(file, 'w') as f:
+                    f.write(content)
+            exit()
+        else:
+            versions = ast.literal_eval(content)
+
     conda_version = versions["packages"]["conda"]
     miniconda_version = versions["framework"]["Miniconda"]
 
