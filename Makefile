@@ -4,7 +4,7 @@
 
 SHELL:=bash
 OWNER:=isbjornlabs
-DATE_STRING:=$(shell date +%Y-%m-%d)
+TAG:=$(shell date +%Y-%m-%d)
 
 # Need to list the images in build dependency order
 ALL_IMAGE_FLAVOURS:=base-notebook \
@@ -36,10 +36,10 @@ build/%: ## build the latest image for a stack
 	if test $(findstring :,$(notdir $@)) ; then \
 		./dev/build-notebook.sh $(notdir $@) $(OWNER) $(DARGS) ; \
 	else \
-		./dev/build-notebook.sh $(notdir $@):$(DATE_STRING) $(OWNER) $(DARGS) ; \
+		./dev/build-notebook.sh $(notdir $@):$(TAG) $(OWNER) $(DARGS) ; \
 	fi
 
-list-images: ## list all buildable docker images
+list-images: ## list all docker images, active and disabled
 	@for framework in $$(ls notebooks) ; do \
 		notebooks=$$(ls notebooks/$$framework) ; \
 		for notebook in $$notebooks ; do \
@@ -50,7 +50,7 @@ list-images: ## list all buildable docker images
 		echo $$image; \
 	done ;
 
-build-stable: $(foreach I,$(ALL_IMAGES),build/$(I) ) ## build all stable stacks
+build-stable: $(foreach I,$(ALL_IMAGES),build/$(I) ) ## build all stable stacks, tagged today; "build-stable TAG=yourtag" for a custom tag
 build-experimental: $(foreach I,$(ALL_IMAGES),build/$(I)\:experimental ) ## build all experimental stacks
 dev/%: ARGS?=
 dev/%: DARGS?=
@@ -59,9 +59,9 @@ dev/%: ## run a foreground container for a stack
 	docker run -it --rm -p $(PORT):8888 $(DARGS) $(OWNER)/$(notdir $@) $(ARGS)
 
 dockerfile/%: ## generate a new dockerfile for a stack, also enabling a disabled image
-	./dev/make_dockerfile.py $(notdir $@) $(DATE_STRING) $(CUDNN)
+	./dev/make_dockerfile.py $(notdir $@) $(TAG) $(CUDNN)
 
-dockerfiles-stable:	$(foreach I,$(ALL_IMAGES),dockerfile/$(I) ) ## generate version-pinned dockerfiles using version numbers from experimental
+dockerfiles-stable:	$(foreach I,$(ALL_IMAGES),dockerfile/$(I) ) ## using version numbers from experimental: generate version-pinned dockerfiles, tagged today; "build-stable TAG=yourtag" for a custom tag
 
 dockerfiles-experimental:	$(foreach I,$(ALL_IMAGES),dockerfile/$(I)\:experimental ) ## generate experimental dockerfiles, only needed if you tweaked the templates
 
