@@ -3,7 +3,7 @@
 # Tag the latest date-tagged build with "latest". Push the tag in addition
 # to the date-tag already pushed.
 docker tag $IMAGE_NAME $DOCKER_REPO:latest
-docker push $DOCKER_REPO:$GIT_SHA_TAG
+docker push $DOCKER_REPO:latest
 
 # Invoke all downstream build triggers.
 for url in $(echo $NEXT_BUILD_TRIGGERS | sed "s/,/ /g")
