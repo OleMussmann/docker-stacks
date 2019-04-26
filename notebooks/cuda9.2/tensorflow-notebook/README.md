@@ -25,12 +25,12 @@
 | attrs | 19.1.0 |
 | backcall | 0.1.0 |
 | beautifulsoup4 | 4.7.1 |
-| blas | 2.5 |
+| blas | 2.6 |
 | bleach | 3.1.0 |
 | bokeh | 1.1.0 |
 | ca-certificates | 2019.1.23 |
 | certifi | 2019.3.9 |
-| cffi | 1.12.2 |
+| cffi | 1.12.3 |
 | chardet | 3.0.4 |
 | click | 7.0 |
 | cloudpickle | 0.8.1 |
@@ -56,7 +56,7 @@
 | glib | 2.56.2 |
 | gmp | 6.1.2 |
 | gmpy2 | 2.0.8 |
-| grpcio | 1.20.0 |
+| grpcio | 1.20.1 |
 | gst-plugins-base | 1.14.0 |
 | gstreamer | 1.14.0 |
 | h5py | 2.9.0 |
@@ -66,7 +66,7 @@
 | idna | 2.8 |
 | imageio | 2.5.0 |
 | ipykernel | 5.1.0 |
-| ipython | 7.4.0 |
+| ipython | 7.5.0 |
 | ipython_genutils | 0.2.0 |
 | ipywidgets | 7.4.2 |
 | jedi | 0.13.3 |
@@ -76,7 +76,7 @@
 | jupyter_client | 5.2.4 |
 | jupyter_core | 4.4.0 |
 | jupyterhub | 0.9.6 |
-| jupyterlab | 0.35.4 |
+| jupyterlab | 0.35.5 |
 | jupyterlab_server | 0.2.0 |
 | keras-applications | 1.0.7 |
 | keras-preprocessing | 1.0.9 |
@@ -84,7 +84,7 @@
 | krb5 | 1.16.1 |
 | libblas | 3.8.0 |
 | libcblas | 3.8.0 |
-| libcurl | 7.64.0 |
+| libcurl | 7.64.1 |
 | libedit | 3.1.20181209 |
 | libffi | 3.2.1 |
 | libgcc-ng | 8.2.0 |
@@ -92,7 +92,7 @@
 | liblapack | 3.8.0 |
 | liblapacke | 3.8.0 |
 | libopenblas | 0.3.3 |
-| libpng | 1.6.36 |
+| libpng | 1.6.37 |
 | libprotobuf | 3.6.1 |
 | libsodium | 1.0.16 |
 | libssh2 | 1.8.2 |
@@ -113,7 +113,7 @@
 | mpfr | 4.0.1 |
 | mpmath | 1.1.0 |
 | msgpack-python | 0.6.1 |
-| nbconvert | 5.4.1 |
+| nbconvert | 5.5.0 |
 | nbformat | 4.4.0 |
 | ncurses | 6.1 |
 | networkx | 2.3 |
@@ -121,8 +121,8 @@
 | notebook | 5.7.8 |
 | numba | 0.43.1 |
 | numexpr | 2.6.9 |
-| numpy | 1.16.2 |
-| numpy-base | 1.16.2 |
+| numpy | 1.16.3 |
+| numpy-base | 1.16.3 |
 | olefile | 0.46 |
 | openblas | 0.3.5 |
 | openssl | 1.1.1b |
@@ -151,7 +151,7 @@
 | pygments | 2.3.1 |
 | pyopenssl | 19.0.0 |
 | pyparsing | 2.4.0 |
-| pyrsistent | 0.14.11 |
+| pyrsistent | 0.15.1 |
 | pysocks | 1.6.8 |
 | python | 3.7.3 |
 | python-dateutil | 2.8.0 |
@@ -164,7 +164,7 @@
 | readline | 7.0 |
 | requests | 2.21.0 |
 | ruamel_yaml | 0.15.46 |
-| scikit-image | 0.14.2 |
+| scikit-image | 0.15.0 |
 | scikit-learn | 0.20.3 |
 | scipy | 1.2.1 |
 | seaborn | 0.9.0 |
@@ -175,7 +175,7 @@
 | sortedcontainers | 2.1.0 |
 | soupsieve | 1.8 |
 | sqlalchemy | 1.3.3 |
-| sqlite | 3.27.2 |
+| sqlite | 3.28.0 |
 | statsmodels | 0.9.0 |
 | sympy | 1.4 |
 | tblib | 1.3.2 |
@@ -190,7 +190,7 @@
 | toolz | 0.9.0 |
 | tornado | 6.0.2 |
 | traitlets | 4.3.2 |
-| urllib3 | 1.24.1 |
+| urllib3 | 1.24.2 |
 | vincent | 0.4.4 |
 | wcwidth | 0.1.7 |
 | webencodings | 0.5.1 |
@@ -475,7 +475,6 @@
 | libjack-jackd2-0 | 1.9.12~dfsg-2 |
 | libjbig0 | 2.1-3.1build1 |
 | libjbig2dec0 | 0.13-6 |
-| libjemalloc1 | 3.6.0-11 |
 | libjpeg-turbo8 | 1.5.2-0ubuntu5.18.04.1 |
 | libjpeg8 | 8c-2ubuntu8 |
 | libjson-glib-1.0-0 | 1.4.2-3 |
@@ -524,7 +523,7 @@
 | libnpth0 | 1.5-3 |
 | libnspr4 | 2:4.18-1ubuntu1 |
 | libnss3 | 2:3.35-2ubuntu2.2 |
-| libnuma1 | 2.0.11-2.1 |
+| libnuma1 | 2.0.11-2.1ubuntu0.1 |
 | libogg0 | 1.3.2-1 |
 | libopenal-data | 1:1.18.2-2 |
 | libopenal1 | 1:1.18.2-2 |
@@ -718,8 +717,8 @@
 | nano | 2.9.3-2 |
 | ncurses-base | 6.1-1ubuntu1.18.04 |
 | ncurses-bin | 6.1-1ubuntu1.18.04 |
-| neovim | 0.3.1-3ppa1~ubuntu18.04.1 |
-| neovim-runtime | 0.3.1-3ppa1~ubuntu18.04.1 |
+| neovim | 0.3.4-1ppa1~ubuntu18.04.2 |
+| neovim-runtime | 0.3.4-1ppa1~ubuntu18.04.2 |
 | netcat | 1.10-41.1 |
 | netcat-traditional | 1.10-41.1 |
 | openssl | 1.1.0g-2ubuntu4.3 |

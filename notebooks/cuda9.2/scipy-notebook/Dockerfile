@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=isbjornlabs/minimal-notebook-cuda9.2:2019-04-21
+ARG BASE_CONTAINER=isbjornlabs/minimal-notebook-cuda9.2:2019-04-25
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
@@ -26,32 +26,32 @@ USER $NB_UID
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
-    'conda-forge::blas=*=openblas' \
-    'ipywidgets==7.4.2' \
-    'pandas==0.24.2' \
-    'numexpr==2.6.9' \
-    'matplotlib==3.0.3' \
-    'scipy==1.2.1' \
-    'seaborn==0.9.0' \
-    'scikit-learn==0.20.3' \
-    'scikit-image==0.14.2' \
-    'sympy==1.4' \
-    'cython==0.29.7' \
-    'patsy==0.5.1' \
-    'statsmodels==0.9.0' \
-    'cloudpickle==0.8.1' \
-    'dill==0.2.9' \
-    'dask==1.2.0' \
-    'numba==0.43.1' \
-    'bokeh==1.1.0' \
-    'sqlalchemy==1.3.3' \
-    'hdf5==1.10.4' \
-    'h5py==2.9.0' \
-    'vincent==0.4.4' \
     'beautifulsoup4==4.7.1' \
+    'bokeh==1.1.0' \
+    'cloudpickle==0.8.1' \
+    'conda-forge::blas==2.6=openblas' \
+    'cython==0.29.7' \
+    'dask==1.2.0' \
+    'dill==0.2.9' \
+    'h5py==2.9.0' \
+    'hdf5==1.10.4' \
+    'ipywidgets==7.4.2' \
+    'matplotlib==3.0.3' \
+    'numba==0.43.1' \
+    'numexpr==2.6.9' \
+    'pandas==0.24.2' \
+    'patsy==0.5.1' \
     'protobuf==3.6.1' \
-    'xlrd==1.2.0'  && \
-    conda remove --quiet --yes --force qt pyqt && \
+    'scipy==1.2.1' \
+    'scikit-image==0.15.0' \
+    'scikit-learn==0.20.3' \
+    'seaborn==0.9.0' \
+    'sqlalchemy==1.3.3' \
+    'statsmodels==0.9.0' \
+    'sympy==1.4' \
+    'vincent==0.4.4' \
+    'xlrd==1.2.0' \
+    && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
@@ -60,6 +60,7 @@ RUN conda install --quiet --yes \
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 && \
     jupyter labextension install jupyterlab_bokeh@^0.6.3 && \
+    jupyter lab build && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
     rm -rf /home/$NB_USER/.cache/yarn && \

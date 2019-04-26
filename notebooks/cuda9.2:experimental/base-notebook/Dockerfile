@@ -97,6 +97,7 @@ RUN conda install --quiet --yes -c conda-forge \
     'notebook' \
     && conda clean --all && \
     jupyter labextension install @jupyterlab/hub-extension && \
+    jupyter lab build && \
     npm cache clean --force && \
     jupyter notebook --generate-config && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \

@@ -41,10 +41,10 @@
 | jupyter_client | 5.2.4 |
 | jupyter_core | 4.4.0 |
 | jupyterhub | 0.9.6 |
-| jupyterlab | 0.35.4 |
+| jupyterlab | 0.35.5 |
 | jupyterlab_server | 0.2.0 |
 | krb5 | 1.16.1 |
-| libcurl | 7.64.0 |
+| libcurl | 7.64.1 |
 | libedit | 3.1.20181209 |
 | libffi | 3.2.1 |
 | libgcc-ng | 8.2.0 |

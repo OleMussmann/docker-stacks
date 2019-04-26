@@ -15,12 +15,12 @@ USER root
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
-    wget \
     bzip2 \
     ca-certificates \
-    sudo \
-    locales \
     fonts-liberation \
+    locales \
+    sudo \
+    wget \
  && rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
@@ -93,11 +93,12 @@ RUN conda install --quiet --yes 'tini==0.18.0' && \
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
 RUN conda install --quiet --yes -c conda-forge \
-    'notebook==5.7.8' \
     'jupyterhub==0.9.6' \
-    'jupyterlab==0.35.4' && \
-    conda clean --all && \
+    'jupyterlab==0.35.5' \
+    'notebook==5.7.8' \
+    && conda clean --all && \
     jupyter labextension install @jupyterlab/hub-extension@^0.12.0 && \
+    jupyter lab build && \
     npm cache clean --force && \
     jupyter notebook --generate-config && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
