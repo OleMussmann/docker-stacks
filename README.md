@@ -27,9 +27,9 @@ While this repository is the base for many Docker images, only four are recommen
 These images come in two different flavours:
 
 - experimental
-    - As raw as it gets, these images always pull the latest software versions when you build them.
+    - As raw as it gets, these images always pull the latest software versions when you build them. Not found on Docker Hub.
 - version-pinned
-    - If you are not living on the edge, the version-pinned recipes will reproducibly build the same images. The latest version-pinned images will carry the tag `latest` in addition to their date-tag `YYYY-MM-DD`. Dropping the tag will always pull `latest`.
+    - If you are not living on the edge, the version-pinned recipes will reproducibly build the same images. The latest version-pinned images will carry the tag `latest` in addition to their date-tag `YYYY-MM-DD`. Dropping the tag will always pull `latest`. You can bypass this repository entirely and pull the images from [Docker Hub](https://hub.docker.com/u/isbjornlabs/).
 
 Images are based on different versions of CUDA. Supported are:
 
