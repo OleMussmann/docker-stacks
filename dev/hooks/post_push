@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Tag the latest date-tagged build with "latest". Push the tag in addition
+# to the date-tag already pushed.
+docker tag $IMAGE_NAME $DOCKER_REPO:$DOCKERCLOUD_TRIGGER_BODY
+docker push $DOCKER_REPO:$DOCKERCLOUD_TRIGGER_BODY
