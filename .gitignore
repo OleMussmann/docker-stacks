@@ -73,4 +73,4 @@ Pipfile
 Pipfile.lock
 
 # vim temp files
-.swp
+*.swp
