@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Tag the latest date-tagged build with "latest". Push the tag in addition
-# to the date-tag already pushed.
-docker tag $IMAGE_NAME $DOCKER_REPO:latest
-docker push $DOCKER_REPO:latest
+# Tag the latest build with a date tag mentioned in the notebook folder.
+# Push the tag in addition to the "latest" tag already pushed.
+TAG=$(cat tag)
+docker tag $IMAGE_NAME $DOCKER_REPO:$TAG
+docker push $DOCKER_REPO:$TAG
 
 # Invoke all downstream build triggers.
 for url in $(echo $NEXT_BUILD_TRIGGERS | sed "s/,/ /g")

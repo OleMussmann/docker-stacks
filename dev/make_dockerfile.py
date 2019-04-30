@@ -158,3 +158,8 @@ for idx, line in enumerate(dockerfile_text.split('\n')):
 print('Writing new dockerfile "' + notebook_folder + "/Dockerfile" + '"')
 with open(notebook_folder + "/Dockerfile", 'w') as outfile:
     outfile.write(dockerfile_text)
+
+if not experimental:
+    print('Writing tag "' + tag + '" to tag file "' + notebook_folder + "/tag" + '"')
+    with open(notebook_folder + "/tag", 'w') as outfile:
+        outfile.write(tag)
