@@ -71,3 +71,6 @@ dockerspawner.tar.gz
 
 Pipfile
 Pipfile.lock
+
+# vim temp files
+.swp
