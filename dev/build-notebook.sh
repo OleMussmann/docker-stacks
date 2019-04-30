@@ -39,11 +39,11 @@ if [[ "$image_name_with_tag" == *":experimental" ]] ; then
 
   if [[ ${dockerfile_content:0:11} == '### WARNING' ]]; then
     echo "experimental image \"$image_name_with_tag\" from folder" \
-      "\"$cuda:experimental/$notebook_name\" is disabled, skipping build"
+      "\"notebooks/$cuda:experimental/$notebook_name\" is disabled, skipping build"
     exit
   else
     echo "building experimental image \"$image_name_with_tag\" from folder" \
-      "\"$cuda:experimental/$notebook_name\""
+      "\"notebooks/$cuda:experimental/$notebook_name\""
 
     if [[ "$notebook_name" == "base-notebook" ]] ; then
       docker build $dargs --no-cache --pull --rm --force-rm \
@@ -71,11 +71,11 @@ else
   dockerfile_content=$(cat $full_folder/Dockerfile)
   if [[ ${dockerfile_content:0:11} == '### WARNING' ]]; then
     echo "experimental image \"$image_name_with_tag\" from folder" \
-      "\"$cuda:experimental/$notebook_name\" is disabled, skipping build"
+      "\"notebooks/$cuda:experimental/$notebook_name\" is disabled, skipping build"
     exit
   else
     echo "building version-pinned image \"$image_name_with_tag\" from folder" \
-      "\"$cuda/$notebook_name\""
+      "\"notebooks/$cuda/$notebook_name\""
     docker build $dargs --rm --force-rm \
       -t "$owner/$image_name_with_tag" \
       -t "$owner/$image_name_without_tag":latest \
