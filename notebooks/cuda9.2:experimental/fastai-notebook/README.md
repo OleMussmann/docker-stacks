@@ -23,7 +23,7 @@
 | attrs | 19.1.0 |
 | backcall | 0.1.0 |
 | beautifulsoup4 | 4.7.1 |
-| blas | 2.6 |
+| blas | 2.7 |
 | bleach | 3.1.0 |
 | bokeh | 1.1.0 |
 | bottleneck | 1.2.1 |
@@ -48,10 +48,10 @@
 | decorator | 4.4.0 |
 | defusedxml | 0.5.0 |
 | dill | 0.2.9 |
-| distributed | 1.27.0 |
+| distributed | 1.27.1 |
 | entrypoints | 0.3 |
 | expat | 2.2.6 |
-| fastai | 1.0.51 |
+| fastai | 1.0.52 |
 | fastcache | 1.0.2 |
 | fastprogress | 0.1.21 |
 | fontconfig | 2.13.0 |
@@ -69,7 +69,7 @@
 | imageio | 2.5.0 |
 | intel-openmp | 2019.3 |
 | ipykernel | 5.1.0 |
-| ipython | 7.4.0 |
+| ipython | 7.5.0 |
 | ipython_genutils | 0.2.0 |
 | ipywidgets | 7.4.2 |
 | jedi | 0.13.3 |
@@ -80,7 +80,7 @@
 | jupyterhub | 0.9.6 |
 | jupyterlab | 0.35.5 |
 | jupyterlab_server | 0.2.0 |
-| kiwisolver | 1.0.1 |
+| kiwisolver | 1.1.0 |
 | krb5 | 1.16.1 |
 | libblas | 3.8.0 |
 | libcblas | 3.8.0 |
@@ -114,12 +114,12 @@
 | msgpack-numpy | 0.4.3.2 |
 | msgpack-python | 0.6.1 |
 | murmurhash | 1.0.2 |
-| nbconvert | 5.4.1 |
+| nbconvert | 5.5.0 |
 | nbformat | 4.4.0 |
 | ncurses | 6.1 |
 | networkx | 2.3 |
 | ninja | 1.9.0 |
-| nodejs | 11.11.0 |
+| nodejs | 11.14.0 |
 | notebook | 5.7.8 |
 | numba | 0.43.1 |
 | numexpr | 2.6.9 |
@@ -128,6 +128,7 @@
 | nvidia-ml-py3 | 7.352.0 |
 | olefile | 0.46 |
 | openblas | 0.3.5 |
+| opencv-contrib-python-headless | 4.1.0.25 |
 | openssl | 1.1.1b |
 | packaging | 19.0 |
 | pamela | 1.0.0 |
@@ -148,7 +149,7 @@
 | prometheus_client | 0.6.0 |
 | prompt_toolkit | 2.0.9 |
 | protobuf | 3.6.1 |
-| psutil | 5.6.1 |
+| psutil | 5.6.2 |
 | ptyprocess | 0.6.0 |
 | pycosat | 0.6.3 |
 | pycparser | 2.19 |
@@ -157,7 +158,7 @@
 | pyopenssl | 19.0.0 |
 | pyparsing | 2.4.0 |
 | pyqt | 5.9.2 |
-| pyrsistent | 0.14.11 |
+| pyrsistent | 0.15.1 |
 | pysocks | 1.6.8 |
 | python | 3.7.3 |
 | python-dateutil | 2.8.0 |

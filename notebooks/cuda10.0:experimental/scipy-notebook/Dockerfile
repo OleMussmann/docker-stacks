@@ -53,6 +53,10 @@ RUN conda install --quiet --yes \
     'xlrd' \
     && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
+    # pip installs
+    pip install --no-cache-dir \
+    'opencv-contrib-python-headless' \
+    && rm -rf /home/$NB_USER/.local && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
     # Also activate ipywidgets extension for JupyterLab

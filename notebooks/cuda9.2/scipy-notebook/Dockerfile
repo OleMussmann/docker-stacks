@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=isbjornlabs/minimal-notebook-cuda9.2:2019-04-25
+ARG BASE_CONTAINER=isbjornlabs/minimal-notebook-cuda9.2:2019-04-30
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
@@ -29,7 +29,7 @@ RUN conda install --quiet --yes \
     'beautifulsoup4==4.7.1' \
     'bokeh==1.1.0' \
     'cloudpickle==0.8.1' \
-    'conda-forge::blas==2.6=openblas' \
+    'conda-forge::blas==2.7=openblas' \
     'cython==0.29.7' \
     'dask==1.2.0' \
     'dill==0.2.9' \
@@ -53,6 +53,10 @@ RUN conda install --quiet --yes \
     'xlrd==1.2.0' \
     && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
+    # pip installs
+    pip install --no-cache-dir \
+    'opencv-contrib-python-headless==4.1.0.25' \
+    && rm -rf /home/$NB_USER/.local && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
     # Also activate ipywidgets extension for JupyterLab

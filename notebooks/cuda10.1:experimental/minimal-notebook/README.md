@@ -33,7 +33,7 @@
 | entrypoints | 0.3 |
 | idna | 2.8 |
 | ipykernel | 5.1.0 |
-| ipython | 7.4.0 |
+| ipython | 7.5.0 |
 | ipython_genutils | 0.2.0 |
 | jedi | 0.13.3 |
 | jinja2 | 2.10.1 |
@@ -54,10 +54,10 @@
 | mako | 1.0.7 |
 | markupsafe | 1.1.1 |
 | mistune | 0.8.4 |
-| nbconvert | 5.4.1 |
+| nbconvert | 5.5.0 |
 | nbformat | 4.4.0 |
 | ncurses | 6.1 |
-| nodejs | 11.11.0 |
+| nodejs | 11.14.0 |
 | notebook | 5.7.8 |
 | openssl | 1.1.1b |
 | pamela | 1.0.0 |
@@ -75,7 +75,7 @@
 | pycurl | 7.43.0.2 |
 | pygments | 2.3.1 |
 | pyopenssl | 19.0.0 |
-| pyrsistent | 0.14.11 |
+| pyrsistent | 0.15.1 |
 | pysocks | 1.6.8 |
 | python | 3.7.3 |
 | python-dateutil | 2.8.0 |

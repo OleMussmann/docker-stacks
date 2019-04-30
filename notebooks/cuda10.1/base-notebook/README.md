@@ -66,7 +66,7 @@
 | parso | 0.4.0 |
 | pexpect | 4.7.0 |
 | pickleshare | 0.7.5 |
-| pip | 19.0.3 |
+| pip | 19.1 |
 | prometheus_client | 0.6.0 |
 | prompt_toolkit | 2.0.9 |
 | ptyprocess | 0.6.0 |
@@ -86,7 +86,7 @@
 | requests | 2.21.0 |
 | ruamel_yaml | 0.15.46 |
 | send2trash | 1.5.0 |
-| setuptools | 41.0.0 |
+| setuptools | 41.0.1 |
 | six | 1.12.0 |
 | sqlalchemy | 1.3.3 |
 | sqlite | 3.28.0 |

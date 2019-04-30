@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda9.2:2019-04-25
+ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda9.2:2019-04-30
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
@@ -9,7 +9,7 @@ LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
 # Install GPU-optimized JPEG encoder, see:
 # https://github.com/fastai/fastai#conda-install
 RUN conda install --quiet --yes \
-    -c pytorch -c fastai 'fastai==1.0.51' && \
+    -c pytorch -c fastai 'fastai==1.0.52' && \
     conda uninstall --force jpeg libtiff -y && \
     conda install -c conda-forge 'libjpeg-turbo==2.0.2' && \
     conda clean --all && \

@@ -23,7 +23,7 @@
 | attrs | 19.1.0 |
 | backcall | 0.1.0 |
 | beautifulsoup4 | 4.7.1 |
-| blas | 2.6 |
+| blas | 2.7 |
 | bleach | 3.1.0 |
 | bokeh | 1.1.0 |
 | bottleneck | 1.2.1 |
@@ -48,10 +48,10 @@
 | decorator | 4.4.0 |
 | defusedxml | 0.5.0 |
 | dill | 0.2.9 |
-| distributed | 1.27.0 |
+| distributed | 1.27.1 |
 | entrypoints | 0.3 |
 | expat | 2.2.6 |
-| fastai | 1.0.51 |
+| fastai | 1.0.52 |
 | fastcache | 1.0.2 |
 | fastprogress | 0.1.21 |
 | fontconfig | 2.13.0 |
@@ -80,7 +80,7 @@
 | jupyterhub | 0.9.6 |
 | jupyterlab | 0.35.5 |
 | jupyterlab_server | 0.2.0 |
-| kiwisolver | 1.0.1 |
+| kiwisolver | 1.1.0 |
 | krb5 | 1.16.1 |
 | libblas | 3.8.0 |
 | libcblas | 3.8.0 |
@@ -119,7 +119,7 @@
 | ncurses | 6.1 |
 | networkx | 2.3 |
 | ninja | 1.9.0 |
-| nodejs | 11.11.0 |
+| nodejs | 11.14.0 |
 | notebook | 5.7.8 |
 | numba | 0.43.1 |
 | numexpr | 2.6.9 |
@@ -128,6 +128,7 @@
 | nvidia-ml-py3 | 7.352.0 |
 | olefile | 0.46 |
 | openblas | 0.3.5 |
+| opencv-contrib-python-headless | 4.1.0.25 |
 | openssl | 1.1.1b |
 | packaging | 19.0 |
 | pamela | 1.0.0 |
@@ -142,13 +143,13 @@
 | pickleshare | 0.7.5 |
 | pillow | 6.0.0 |
 | pillow-simd | 5.3.0.post1 |
-| pip | 19.0.3 |
+| pip | 19.1 |
 | plac | 0.9.6 |
 | preshed | 2.0.1 |
 | prometheus_client | 0.6.0 |
 | prompt_toolkit | 2.0.9 |
 | protobuf | 3.6.1 |
-| psutil | 5.6.1 |
+| psutil | 5.6.2 |
 | ptyprocess | 0.6.0 |
 | pycosat | 0.6.3 |
 | pycparser | 2.19 |
@@ -178,7 +179,7 @@
 | scipy | 1.2.1 |
 | seaborn | 0.9.0 |
 | send2trash | 1.5.0 |
-| setuptools | 41.0.0 |
+| setuptools | 41.0.1 |
 | sip | 4.19.8 |
 | six | 1.12.0 |
 | sortedcontainers | 2.1.0 |

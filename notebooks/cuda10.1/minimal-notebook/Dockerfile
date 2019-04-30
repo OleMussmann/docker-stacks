@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=isbjornlabs/base-notebook-cuda10.1:2019-04-25
+ARG BASE_CONTAINER=isbjornlabs/base-notebook-cuda10.1:2019-04-30
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"

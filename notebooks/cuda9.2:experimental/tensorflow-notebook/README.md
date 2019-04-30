@@ -25,7 +25,7 @@
 | attrs | 19.1.0 |
 | backcall | 0.1.0 |
 | beautifulsoup4 | 4.7.1 |
-| blas | 2.6 |
+| blas | 2.7 |
 | bleach | 3.1.0 |
 | bokeh | 1.1.0 |
 | ca-certificates | 2019.1.23 |
@@ -46,7 +46,7 @@
 | decorator | 4.4.0 |
 | defusedxml | 0.5.0 |
 | dill | 0.2.9 |
-| distributed | 1.27.0 |
+| distributed | 1.27.1 |
 | entrypoints | 0.3 |
 | expat | 2.2.6 |
 | fastcache | 1.0.2 |
@@ -56,7 +56,7 @@
 | glib | 2.56.2 |
 | gmp | 6.1.2 |
 | gmpy2 | 2.0.8 |
-| grpcio | 1.20.0 |
+| grpcio | 1.20.1 |
 | gst-plugins-base | 1.14.0 |
 | gstreamer | 1.14.0 |
 | h5py | 2.9.0 |
@@ -66,7 +66,7 @@
 | idna | 2.8 |
 | imageio | 2.5.0 |
 | ipykernel | 5.1.0 |
-| ipython | 7.4.0 |
+| ipython | 7.5.0 |
 | ipython_genutils | 0.2.0 |
 | ipywidgets | 7.4.2 |
 | jedi | 0.13.3 |
@@ -80,7 +80,7 @@
 | jupyterlab_server | 0.2.0 |
 | keras-applications | 1.0.7 |
 | keras-preprocessing | 1.0.9 |
-| kiwisolver | 1.0.1 |
+| kiwisolver | 1.1.0 |
 | krb5 | 1.16.1 |
 | libblas | 3.8.0 |
 | libcblas | 3.8.0 |
@@ -113,11 +113,11 @@
 | mpfr | 4.0.1 |
 | mpmath | 1.1.0 |
 | msgpack-python | 0.6.1 |
-| nbconvert | 5.4.1 |
+| nbconvert | 5.5.0 |
 | nbformat | 4.4.0 |
 | ncurses | 6.1 |
 | networkx | 2.3 |
-| nodejs | 11.11.0 |
+| nodejs | 11.14.0 |
 | notebook | 5.7.8 |
 | numba | 0.43.1 |
 | numexpr | 2.6.9 |
@@ -125,6 +125,7 @@
 | numpy-base | 1.16.3 |
 | olefile | 0.46 |
 | openblas | 0.3.5 |
+| opencv-contrib-python-headless | 4.1.0.25 |
 | openssl | 1.1.1b |
 | packaging | 19.0 |
 | pamela | 1.0.0 |
@@ -134,7 +135,7 @@
 | parso | 0.4.0 |
 | partd | 0.3.10 |
 | patsy | 0.5.1 |
-| pbr | 5.1.3 |
+| pbr | 5.2.0 |
 | pcre | 8.43 |
 | pexpect | 4.7.0 |
 | pickleshare | 0.7.5 |
@@ -143,7 +144,7 @@
 | prometheus_client | 0.6.0 |
 | prompt_toolkit | 2.0.9 |
 | protobuf | 3.6.1 |
-| psutil | 5.6.1 |
+| psutil | 5.6.2 |
 | ptyprocess | 0.6.0 |
 | pycosat | 0.6.3 |
 | pycparser | 2.19 |
@@ -151,7 +152,7 @@
 | pygments | 2.3.1 |
 | pyopenssl | 19.0.0 |
 | pyparsing | 2.4.0 |
-| pyrsistent | 0.14.11 |
+| pyrsistent | 0.15.1 |
 | pysocks | 1.6.8 |
 | python | 3.7.3 |
 | python-dateutil | 2.8.0 |
