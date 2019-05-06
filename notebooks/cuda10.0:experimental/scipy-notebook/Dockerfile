@@ -51,7 +51,7 @@ RUN conda install --quiet --yes \
     'sympy' \
     'vincent' \
     'xlrd' \
-    && conda install --quiet --qes -c plotly \
+    && conda install --quiet --yes -c plotly \
     'plotly' \
     'plotly_express' \
     && conda remove --quiet --yes --force qt pyqt && \
