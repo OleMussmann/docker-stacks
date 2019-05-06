@@ -51,6 +51,9 @@ RUN conda install --quiet --yes \
     'sympy' \
     'vincent' \
     'xlrd' \
+    && conda install --quiet --qes -c plotly \
+    'plotly' \
+    'plotly_express' \
     && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
     # pip installs
@@ -64,6 +67,7 @@ RUN conda install --quiet --yes \
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
     jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
     jupyter labextension install jupyterlab_bokeh && \
+    jupyter labextension install @jupyterlab/plotly-extension && \
     jupyter lab build && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
