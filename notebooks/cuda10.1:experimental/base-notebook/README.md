@@ -41,7 +41,7 @@
 | jupyter_client | 5.2.4 |
 | jupyter_core | 4.4.0 |
 | jupyterhub | 0.9.6 |
-| jupyterlab | 0.35.5 |
+| jupyterlab | 0.35.6 |
 | jupyterlab_server | 0.2.0 |
 | krb5 | 1.16.1 |
 | libcurl | 7.64.1 |

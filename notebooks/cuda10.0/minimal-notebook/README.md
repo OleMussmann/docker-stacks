@@ -41,7 +41,7 @@
 | jupyter_client | 5.2.4 |
 | jupyter_core | 4.4.0 |
 | jupyterhub | 0.9.6 |
-| jupyterlab | 0.35.5 |
+| jupyterlab | 0.35.6 |
 | jupyterlab_server | 0.2.0 |
 | krb5 | 1.16.1 |
 | libcurl | 7.64.1 |
@@ -212,7 +212,7 @@
 | gpgv | 2.2.4-1ubuntu1.2 |
 | grep | 3.1-2 |
 | gsettings-desktop-schemas | 3.28.0-1ubuntu1 |
-| gtk-update-icon-cache | 3.22.30-1ubuntu2 |
+| gtk-update-icon-cache | 3.22.30-1ubuntu3 |
 | gzip | 1.6-5ubuntu1 |
 | hicolor-icon-theme | 0.17-2 |
 | hostname | 3.20 |
@@ -295,7 +295,7 @@
 | libgdk-pixbuf2.0-0 | 2.36.11-2 |
 | libgdk-pixbuf2.0-common | 2.36.11-2 |
 | libgif7 | 5.1.4-2 |
-| libglib2.0-0 | 2.56.3-0ubuntu0.18.04.1 |
+| libglib2.0-0 | 2.56.4-0ubuntu0.18.04.2 |
 | libglibmm-2.4-1v5 | 2.56.0-1 |
 | libgmp10 | 2:6.1.2+dfsg-2 |
 | libgnutls30 | 3.5.18-1ubuntu1 |
@@ -309,8 +309,8 @@
 | libgslcblas0 | 2.4+dfsg-6 |
 | libgssapi-krb5-2 | 1.16-2ubuntu0.1 |
 | libgssapi3-heimdal | 7.5.0+dfsg-1 |
-| libgtk-3-0 | 3.22.30-1ubuntu2 |
-| libgtk-3-common | 3.22.30-1ubuntu2 |
+| libgtk-3-0 | 3.22.30-1ubuntu3 |
+| libgtk-3-common | 3.22.30-1ubuntu3 |
 | libgtk2.0-0 | 2.24.32-1ubuntu1 |
 | libgtk2.0-common | 2.24.32-1ubuntu1 |
 | libgtkmm-2.4-1v5 | 1:2.24.5-2 |
@@ -388,7 +388,7 @@
 | libpcre3 | 2:8.39-9 |
 | libperl5.26 | 5.26.1-6ubuntu0.3 |
 | libpixman-1-0 | 0.34.0-2 |
-| libpng16-16 | 1.6.34-1ubuntu0.18.04.1 |
+| libpng16-16 | 1.6.34-1ubuntu0.18.04.2 |
 | libpoppler-glib8 | 0.62.0-2ubuntu2.8 |
 | libpoppler73 | 0.62.0-2ubuntu2.8 |
 | libpopt0 | 1.16-11 |

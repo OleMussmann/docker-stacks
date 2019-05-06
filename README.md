@@ -52,14 +52,14 @@ isbjornlabs/[NAME]-notebook-cuda[CUDA_VERSION][:TAG]
 
 The `experimental` version of the `fastai` notebook, based on CUDA `10.1` is thus called: `isbjornlabs/fastai-notebook-cuda10.1:experimental`.
 
-The version-pinned version from `2019-04-21` of the `mxnet` notebook, based on CUDA `9.2` is thus called: `isbjornlabs/mxnet-notebook-cuda9.2:2019-04-21`.
+The version-pinned version from `2019-05-06` of the `mxnet` notebook, based on CUDA `9.2` is thus called: `isbjornlabs/mxnet-notebook-cuda9.2:2019-05-06`.
 
 The `latest` version of the version-pinned `tensorflow` notebook, based on CUDA `10.0` is thus called: `isbjornlabs/tensorflow-notebook-cuda10.0:latest`. The latest tag can be omitted for the short version: `isbjornlabs/tensorflow-notebook-cuda10.0`
 
 #### Image Tables
 Not all versions are compatible with each other. Consult the tables below to see which notebooks are buildable.
 
-##### Version-pinned: 2019-04-21
+##### Version-pinned: 2019-05-06
 | notebook   | [CUDA 9.2](notebooks/cuda9.2)              | [CUDA 10.0](notebooks/cuda10.0)             | [CUDA 10.1](notebooks/cuda10.1)              |
 |------------|--------------------------------------------|---------------------------------------------|----------------------------------------------|
 | scipy      | [✔️](notebooks/cuda9.2/scipy-notebook)      | [✔️](notebooks/cuda10.0/scipy-notebook)      | [✔️](notebooks/cuda10.1/scipy-notebook)       |
@@ -69,7 +69,7 @@ Not all versions are compatible with each other. Consult the tables below to see
 
 ##### Experimental
 | notebook   | [CUDA 9.2](notebooks/cuda9.2:experimental)              | [CUDA 10.0](notebooks/cuda10.0:experimental)             | [CUDA 10.1](notebooks/cuda10.1:experimental)              |
-|------------|--------------------------------------------|---------------------------------------------|----------------------------------------------|
+|------------|---------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------------|
 | scipy      | [✔️](notebooks/cuda9.2/scipy-notebook:experimental)      | [✔️](notebooks/cuda10.0/scipy-notebook:experimental)      | [✔️](notebooks/cuda10.1/scipy-notebook:experimental)       |
 | fastai     | [✔️](notebooks/cuda9.2/fastai-notebook:experimental)     | [✔️](notebooks/cuda10.0/fastai-notebook:experimental)     | [✔️](notebooks/cuda10.1/fastai-notebook:experimental)      |
 | tensorflow | [✔️](notebooks/cuda9.2/tensorflow-notebook:experimental) | [✔️](notebooks/cuda10.0/tensorflow-notebook:experimental) | [❌](notebooks/cuda10.1/tensorflow-notebook:experimental) |
@@ -80,17 +80,17 @@ The examples below may help you get started if you finished the above installati
 
 The [User Guide on ReadTheDocs](http://jupyter-docker-stacks.readthedocs.io/) describes additional uses and features in detail.
 
-**Example 1:** This command pulls the `isbjornlabs/tensorflow-notebook` image tagged `2019-04-21` from Docker Hub if it is not already present on the local host. It then starts a container running a Jupyter Notebook server and exposes the server on host port 8888. The server logs appear in the terminal. Visiting `http://<hostname>:8888/?token=<token>` in a browser loads the Jupyter Notebook dashboard page, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. The container remains intact for restart after the notebook server exits.
+**Example 1:** This command pulls the `isbjornlabs/tensorflow-notebook` image tagged `2019-05-06` from Docker Hub if it is not already present on the local host. It then starts a container running a Jupyter Notebook server and exposes the server on host port 8888. The server logs appear in the terminal. Visiting `http://<hostname>:8888/?token=<token>` in a browser loads the Jupyter Notebook dashboard page, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. The container remains intact for restart after the notebook server exits.
 
-    docker run -p 8888:8888 isbjornlabs/tensorflow-notebook:2019-04-21
+    docker run -p 8888:8888 isbjornlabs/tensorflow-notebook:2019-05-06
 
 **Example 2:** This command performs the same operations as **Example 1**, but it exposes the server on host port 10000 instead of port 8888. Visiting ``http://<hostname>:10000/?token=<token>`` in a browser loads JupyterLab, where ``hostname`` is the name of the computer running docker and ``token`` is the secret token printed in the console.::
 
-    docker run -p 10000:8888 isbjornlabs/tensorflow-notebook:2019-04-21
+    docker run -p 10000:8888 isbjornlabs/tensorflow-notebook:2019-05-06
 
-**Example 3:** This command pulls the `isbjornlabs/fastai-notebook` image tagged `2019-04-21` from Docker Hub if it is not already present on the local host. It then starts an *ephemeral* container running a Jupyter Notebook server and exposes the server on host port 10000. The command mounts the current working directory on the host as `/workdir` in the container. The server logs appear in the terminal. Visiting `http://<hostname>:10000/?token=<token>` in a browser loads JupyterLab, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. Docker destroys the container after notebook server exit, but any files written to `/workdir` in the container remain intact on the host.
+**Example 3:** This command pulls the `isbjornlabs/fastai-notebook` image tagged `2019-05-06` from Docker Hub if it is not already present on the local host. It then starts an *ephemeral* container running a Jupyter Notebook server and exposes the server on host port 10000. The command mounts the current working directory on the host as `/workdir` in the container. The server logs appear in the terminal. Visiting `http://<hostname>:10000/?token=<token>` in a browser loads JupyterLab, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. Docker destroys the container after notebook server exit, but any files written to `/workdir` in the container remain intact on the host.
 
-    docker run --rm -p 10000:8888 -e JUPYTER_ENABLE_LAB=yes -v "$PWD":/workdir isbjornlabs/fastai-notebook:2019-04-21
+    docker run --rm -p 10000:8888 -e JUPYTER_ENABLE_LAB=yes -v "$PWD":/workdir isbjornlabs/fastai-notebook:2019-05-06
 
 ## Contributing
 

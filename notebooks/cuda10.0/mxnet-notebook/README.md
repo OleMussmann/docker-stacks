@@ -12,6 +12,7 @@
 |-|-|
 | @jupyter-widgets/jupyterlab-manager | v0.38.1 |
 | @jupyterlab/hub-extension | v0.12.0 |
+| @jupyterlab/plotly-extension | v0.18.2 |
 | jupyterlab_bokeh | v0.6.3 |
 
 ### Python Packages
@@ -23,7 +24,7 @@
 | attrs | 19.1.0 |
 | backcall | 0.1.0 |
 | beautifulsoup4 | 4.7.1 |
-| blas | 2.7 |
+| blas | 2.8 |
 | bleach | 3.1.0 |
 | bokeh | 1.1.0 |
 | ca-certificates | 2019.1.23 |
@@ -72,7 +73,7 @@
 | jupyter_client | 5.2.4 |
 | jupyter_core | 4.4.0 |
 | jupyterhub | 0.9.6 |
-| jupyterlab | 0.35.5 |
+| jupyterlab | 0.35.6 |
 | jupyterlab_server | 0.2.0 |
 | kiwisolver | 1.1.0 |
 | krb5 | 1.16.1 |
@@ -87,7 +88,7 @@
 | liblapacke | 3.8.0 |
 | libopenblas | 0.3.3 |
 | libpng | 1.6.37 |
-| libprotobuf | 3.6.1 |
+| libprotobuf | 3.7.1 |
 | libsodium | 1.0.16 |
 | libssh2 | 1.8.2 |
 | libstdcxx-ng | 8.2.0 |
@@ -116,7 +117,7 @@
 | numexpr | 2.6.9 |
 | numpy | 1.14.6 |
 | olefile | 0.46 |
-| openblas | 0.3.5 |
+| openblas | 0.3.6 |
 | opencv-contrib-python-headless | 4.1.0.25 |
 | openssl | 1.1.1b |
 | packaging | 19.0 |
@@ -132,9 +133,11 @@
 | pickleshare | 0.7.5 |
 | pillow | 6.0.0 |
 | pip | 19.1 |
+| plotly | 3.8.1 |
+| plotly_express | 0.1.7 |
 | prometheus_client | 0.6.0 |
 | prompt_toolkit | 2.0.9 |
-| protobuf | 3.6.1 |
+| protobuf | 3.7.1 |
 | psutil | 5.6.2 |
 | ptyprocess | 0.6.0 |
 | pycosat | 0.6.3 |
@@ -156,6 +159,7 @@
 | pyzmq | 18.0.1 |
 | readline | 7.0 |
 | requests | 2.21.0 |
+| retrying | 1.3.3 |
 | ruamel_yaml | 0.15.46 |
 | scikit-image | 0.15.0 |
 | scikit-learn | 0.20.3 |
@@ -303,7 +307,7 @@
 | gpgv | 2.2.4-1ubuntu1.2 |
 | grep | 3.1-2 |
 | gsettings-desktop-schemas | 3.28.0-1ubuntu1 |
-| gtk-update-icon-cache | 3.22.30-1ubuntu2 |
+| gtk-update-icon-cache | 3.22.30-1ubuntu3 |
 | gzip | 1.6-5ubuntu1 |
 | hicolor-icon-theme | 0.17-2 |
 | hostname | 3.20 |
@@ -422,7 +426,7 @@
 | libgl1 | 1.0.0-2ubuntu2.2 |
 | libgl1-mesa-dri | 18.2.8-0ubuntu0~18.04.2 |
 | libglapi-mesa | 18.2.8-0ubuntu0~18.04.2 |
-| libglib2.0-0 | 2.56.3-0ubuntu0.18.04.1 |
+| libglib2.0-0 | 2.56.4-0ubuntu0.18.04.2 |
 | libglibmm-2.4-1v5 | 2.56.0-1 |
 | libglvnd0 | 1.0.0-2ubuntu2.2 |
 | libglx-mesa0 | 18.2.8-0ubuntu0~18.04.2 |
@@ -441,8 +445,8 @@
 | libgsm1 | 1.0.13-4build1 |
 | libgssapi-krb5-2 | 1.16-2ubuntu0.1 |
 | libgssapi3-heimdal | 7.5.0+dfsg-1 |
-| libgtk-3-0 | 3.22.30-1ubuntu2 |
-| libgtk-3-common | 3.22.30-1ubuntu2 |
+| libgtk-3-0 | 3.22.30-1ubuntu3 |
+| libgtk-3-common | 3.22.30-1ubuntu3 |
 | libgtk2.0-0 | 2.24.32-1ubuntu1 |
 | libgtk2.0-common | 2.24.32-1ubuntu1 |
 | libgtkmm-2.4-1v5 | 1:2.24.5-2 |
@@ -538,7 +542,7 @@
 | libperl5.26 | 5.26.1-6ubuntu0.3 |
 | libpgm-5.2-0 | 5.2.122~dfsg-2 |
 | libpixman-1-0 | 0.34.0-2 |
-| libpng16-16 | 1.6.34-1ubuntu0.18.04.1 |
+| libpng16-16 | 1.6.34-1ubuntu0.18.04.2 |
 | libpoppler-glib8 | 0.62.0-2ubuntu2.8 |
 | libpoppler73 | 0.62.0-2ubuntu2.8 |
 | libpopt0 | 1.16-11 |
@@ -633,7 +637,7 @@
 | libvorbisfile3 | 1.3.5-4.2 |
 | libvpx5 | 1.7.0-3 |
 | libvterm0 | 0~bzr715-1 |
-| libwavpack1 | 5.1.0-2ubuntu1.2 |
+| libwavpack1 | 5.1.0-2ubuntu1.3 |
 | libwayland-client0 | 1.16.0-1ubuntu1.1~18.04.1 |
 | libwayland-cursor0 | 1.16.0-1ubuntu1.1~18.04.1 |
 | libwayland-egl1 | 1.16.0-1ubuntu1.1~18.04.1 |

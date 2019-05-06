@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=isbjornlabs/minimal-notebook-cuda9.2:2019-04-30
+ARG BASE_CONTAINER=isbjornlabs/minimal-notebook-cuda9.2:2019-05-06
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
@@ -29,7 +29,7 @@ RUN conda install --quiet --yes \
     'beautifulsoup4==4.7.1' \
     'bokeh==1.1.0' \
     'cloudpickle==0.8.1' \
-    'conda-forge::blas==2.7=openblas' \
+    'conda-forge::blas==2.8=openblas' \
     'cython==0.29.7' \
     'dask==1.2.0' \
     'dill==0.2.9' \
@@ -41,7 +41,7 @@ RUN conda install --quiet --yes \
     'numexpr==2.6.9' \
     'pandas==0.24.2' \
     'patsy==0.5.1' \
-    'protobuf==3.6.1' \
+    'protobuf==3.7.1' \
     'scipy==1.2.1' \
     'scikit-image==0.15.0' \
     'scikit-learn==0.20.3' \
@@ -51,6 +51,9 @@ RUN conda install --quiet --yes \
     'sympy==1.4' \
     'vincent==0.4.4' \
     'xlrd==1.2.0' \
+    && conda install --quiet --yes -c plotly \
+    'plotly==3.8.1' \
+    'plotly_express==0.1.7' \
     && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
     # pip installs
@@ -64,6 +67,7 @@ RUN conda install --quiet --yes \
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 && \
     jupyter labextension install jupyterlab_bokeh@^0.6.3 && \
+    jupyter labextension install @jupyterlab/plotly-extension@^0.18.2 && \
     jupyter lab build && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
