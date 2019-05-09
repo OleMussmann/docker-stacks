@@ -27,16 +27,18 @@ USER $NB_UID
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
     'beautifulsoup4{% beautifulsoup4_version %}' \
+    'conda-forge::blas{% blas_version %}=openblas' \
     'bokeh{% bokeh_version %}' \
     'cloudpickle{% cloudpickle_version %}' \
-    'conda-forge::blas{% blas_version %}=openblas' \
     'cython{% cython_version %}' \
     'dask{% dask_version %}' \
     'dill{% dill_version %}' \
+    'conda-forge::ggplot{% ggplot_version %}' \
     'h5py{% h5py_version %}' \
     'hdf5{% hdf5_version %}' \
     'ipywidgets{% ipywidgets_version %}' \
     'matplotlib{% matplotlib_version %}' \
+    'networkx{% networkx_version %}' \
     'numba{% numba_version %}' \
     'numexpr{% numexpr_version %}' \
     'pandas{% pandas_version %}' \
@@ -59,6 +61,7 @@ RUN conda install --quiet --yes \
     # pip installs
     pip install --no-cache-dir \
     'opencv-contrib-python-headless{% opencv-contrib-python-headless_version %}' \
+    'pygal{% pygal_version %}' \
     && rm -rf /home/$NB_USER/.local && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
