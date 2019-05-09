@@ -80,6 +80,14 @@ The examples below may help you get started if you finished the above installati
 
 The [User Guide on ReadTheDocs](http://jupyter-docker-stacks.readthedocs.io/) describes additional uses and features in detail.
 
+#### docker-compose
+
+The [DS_project](https://github.com/OleMussmann/DS_project) is a companion repository that simplifies the usage of these notebooks via docker-compose. Check out the [README.md](https://github.com/OleMussmann/DS_project/blob/master/README.md) to get started.
+
+#### docker
+
+For an all-manual mode of operation, use `docker` directly.
+
 **Example 1:** This command pulls the `isbjornlabs/tensorflow-notebook` image tagged `2019-05-06` from Docker Hub if it is not already present on the local host. It then starts a container running a Jupyter Notebook server and exposes the server on host port 8888. The server logs appear in the terminal. Visiting `http://<hostname>:8888/?token=<token>` in a browser loads the Jupyter Notebook dashboard page, where `hostname` is the name of the computer running docker and `token` is the secret token printed in the console. The container remains intact for restart after the notebook server exits.
 
     docker run -p 8888:8888 isbjornlabs/tensorflow-notebook:2019-05-06
