@@ -27,7 +27,7 @@ help:
 # http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 	@echo "OleMussmann/docker-stacks"
 	@echo "====================="
-	@echo "Replace % with a stack name (e.g., make build/minimal-notebook)"
+	@echo "Replace % with a stack name (e.g., make build/minimal-notebook-cuda10.1:experimental)"
 	@echo
 	@grep -E '^[a-zA-Z0-9_%/-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
@@ -73,17 +73,14 @@ disable/%: ## disable an image, e.g. for incompatibility reasons
 #build-test-stable: $(foreach I,$(ALL_IMAGES),build/$(I) test/$(I) ) ## build and test all stable stacks
 #build-test-experimental: $(foreach I,$(ALL_IMAGES),build/$(I)\:experimental test/$(I)\:experimental ) ## build and test all experimental stacks
 
-#publish-stable:
-#publish-experimental:
+test/%: ## run tests against a stack
+	@TEST_IMAGE="$(OWNER)/$(notdir $@)" pytest test
 
-#test/%: ## run tests against a stack
-#	@TEST_IMAGE="$(OWNER)/$(notdir $@)" pytest test
+test/base-notebook-cuda9.2: ## test supported options in the base notebook
+	@TEST_IMAGE="$(OWNER)/$(notdir $@)" pytest test notebooks/cuda9.2/base-notebook/test
 
-#test/base-notebook: ## test supported options in the base notebook
-#	@TEST_IMAGE="$(OWNER)/$(notdir $@)" pytest test notebooks/cuda9.2/base-notebook/test
-
-#dev-env: ## install libraries required to build docs and run tests
-#	pip install --user -r requirements-dev.txt
+dev-env: ## install libraries required to build docs and run tests
+	pip install --user -r requirements-dev.txt
 
 #test-pinned: ## run tests against all version-pinned notebooks
 #test-experimental: ## run tests against all experimental notebooks

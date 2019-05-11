@@ -29,7 +29,7 @@ def docker_client():
 @pytest.fixture(scope='session')
 def image_name():
     """Image name to test"""
-    return os.getenv('TEST_IMAGE', 'jupyter/base-notebook')
+    return os.getenv('TEST_IMAGE', 'isbjornlabs/base-notebook-cuda9.2')
 
 
 class TrackedContainer(object):
