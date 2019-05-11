@@ -50,11 +50,11 @@ The image that you want to use is named
 isbjornlabs/[NAME]-notebook-cuda[CUDA_VERSION][:TAG]
 ```
 
-The `experimental` version of the `fastai` notebook, based on CUDA `10.1` is thus called: `isbjornlabs/fastai-notebook-cuda10.1:experimental`.
+The `experimental` version of the `fastai` notebook, based on CUDA `10.0` is thus called: `isbjornlabs/fastai-notebook-cuda10.0:experimental`.
 
 The version-pinned version from `2019-05-06` of the `mxnet` notebook, based on CUDA `9.2` is thus called: `isbjornlabs/mxnet-notebook-cuda9.2:2019-05-06`.
 
-The `latest` version of the version-pinned `tensorflow` notebook, based on CUDA `10.0` is thus called: `isbjornlabs/tensorflow-notebook-cuda10.0:latest`. The latest tag can be omitted for the short version: `isbjornlabs/tensorflow-notebook-cuda10.0`
+The `latest` version of the version-pinned `scipy` notebook, based on CUDA `10.1` is thus called: `isbjornlabs/scipy-notebook-cuda10.1:latest`. The latest tag can be omitted for the short version: `isbjornlabs/scipy-notebook-cuda10.1`
 
 #### Image Tables
 Not all versions are compatible with each other. Consult the tables below to see which notebooks are buildable.
@@ -63,7 +63,7 @@ Not all versions are compatible with each other. Consult the tables below to see
 | notebook   | [CUDA 9.2](notebooks/cuda9.2)              | [CUDA 10.0](notebooks/cuda10.0)             | [CUDA 10.1](notebooks/cuda10.1)              |
 |------------|--------------------------------------------|---------------------------------------------|----------------------------------------------|
 | scipy      | [✔️](notebooks/cuda9.2/scipy-notebook)      | [✔️](notebooks/cuda10.0/scipy-notebook)      | [✔️](notebooks/cuda10.1/scipy-notebook)       |
-| fastai     | [✔️](notebooks/cuda9.2/fastai-notebook)     | [✔️](notebooks/cuda10.0/fastai-notebook)     | [✔️](notebooks/cuda10.1/fastai-notebook)      |
+| fastai     | [✔️](notebooks/cuda9.2/fastai-notebook)     | [✔️](notebooks/cuda10.0/fastai-notebook)     | [❌](notebooks/cuda10.1/fastai-notebook)      |
 | tensorflow | [✔️](notebooks/cuda9.2/tensorflow-notebook) | [✔️](notebooks/cuda10.0/tensorflow-notebook) | [❌](notebooks/cuda10.1/tensorflow-notebook) |
 | mxnet      | [✔️](notebooks/cuda9.2/mxnet-notebook)      | [✔️](notebooks/cuda10.0/mxnet-notebook)      | [❌](notebooks/cuda10.1/mxnet-notebook)      |
 
@@ -71,7 +71,7 @@ Not all versions are compatible with each other. Consult the tables below to see
 | notebook   | [CUDA 9.2](notebooks/cuda9.2:experimental)              | [CUDA 10.0](notebooks/cuda10.0:experimental)             | [CUDA 10.1](notebooks/cuda10.1:experimental)              |
 |------------|---------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------------|
 | scipy      | [✔️](notebooks/cuda9.2/scipy-notebook:experimental)      | [✔️](notebooks/cuda10.0/scipy-notebook:experimental)      | [✔️](notebooks/cuda10.1/scipy-notebook:experimental)       |
-| fastai     | [✔️](notebooks/cuda9.2/fastai-notebook:experimental)     | [✔️](notebooks/cuda10.0/fastai-notebook:experimental)     | [✔️](notebooks/cuda10.1/fastai-notebook:experimental)      |
+| fastai     | [✔️](notebooks/cuda9.2/fastai-notebook:experimental)     | [✔️](notebooks/cuda10.0/fastai-notebook:experimental)     | [❌](notebooks/cuda10.1/fastai-notebook:experimental)      |
 | tensorflow | [✔️](notebooks/cuda9.2/tensorflow-notebook:experimental) | [✔️](notebooks/cuda10.0/tensorflow-notebook:experimental) | [❌](notebooks/cuda10.1/tensorflow-notebook:experimental) |
 | mxnet      | [✔️](notebooks/cuda9.2/mxnet-notebook:experimental)      | [✔️](notebooks/cuda10.0/mxnet-notebook:experimental)      | [❌](notebooks/cuda10.1/mxnet-notebook:experimental)      |
 
