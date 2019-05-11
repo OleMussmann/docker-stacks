@@ -26,41 +26,98 @@ USER $NB_UID
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
+    'automat{% automat_version %}' \
+    'basemap{% basemap_version %}' \
+    'bcolz{% bcolz_version %}' \
     'beautifulsoup4{% beautifulsoup4_version %}' \
-    'conda-forge::blas{% blas_version %}=openblas' \
     'bokeh{% bokeh_version %}' \
     'cloudpickle{% cloudpickle_version %}' \
+    'configobj{% configobj_version %}' \
+    'constantly{% constantly_version %}' \
+    'cython{% cython_version %}' \
     'cython{% cython_version %}' \
     'dask{% dask_version %}' \
     'dill{% dill_version %}' \
+    'freexl{% freexl_version %}' \
+    'ftfy{% ftfy_version %}' \
+    'gettext{% gettext_version %}' \
+    'graphviz{% graphviz_version %}' \
+    'grpcio{% grpcio_version %}' \
     'h5py{% h5py_version %}' \
     'hdf5{% hdf5_version %}' \
+    'hyperlink{% hyperlink_version %}' \
+    'incremental{% incremental_version %}' \
     'ipywidgets{% ipywidgets_version %}' \
+    'jbig{% jbig_version %}' \
+    'libboost{% libboost_version %}' \
+    'libnetcdf{% libnetcdf_version %}' \
+    'libpq{% libpq_version %}' \
+    'libspatialite{% libspatialite_version %}' \
+    'lxml{% lxml_version %}' \
+    'mako{% mako_version %}' \
+    'markdown{% markdown_version %}' \
+    'markupsafe{% markupsafe_version %}' \
     'matplotlib{% matplotlib_version %}' \
+    'mkl-include{% mkl-include_version %}' \
     'networkx{% networkx_version %}' \
     'numba{% numba_version %}' \
     'numexpr{% numexpr_version %}' \
+    'oauthlib{% oauthlib_version %}' \
     'pandas{% pandas_version %}' \
     'patsy{% patsy_version %}' \
+    'pbr{% pbr_version %}' \
+    'prometheus_client{% prometheus_client_version %}' \
     'protobuf{% protobuf_version %}' \
-    'scipy{% scipy_version %}' \
+    'pycrypto{% pycrypto_version %}' \
+    'pyyaml{% pyyaml_version %}' \
+    'reportlab{% reportlab_version %}' \
     'scikit-image{% scikit-image_version %}' \
     'scikit-learn{% scikit-learn_version %}' \
+    'scipy{% scipy_version %}' \
     'seaborn{% seaborn_version %}' \
+    'simplegeneric{% simplegeneric_version %}' \
     'sqlalchemy{% sqlalchemy_version %}' \
     'statsmodels{% statsmodels_version %}' \
     'sympy{% sympy_version %}' \
-    'vincent{% vincent_version %}' \
+    'werkzeug{% werkzeug_version %}' \
+    'xerces-c{% xerces-c_version %}' \
     'xlrd{% xlrd_version %}' \
-    && conda install --quiet --yes -c plotly \
-    'plotly{% plotly_version %}' \
-    'plotly_express{% plotly_express_version %}' \
+    'conda-forge::altair{% altair_version %}' \
+    'conda-forge::blas{% blas_version %}=openblas' \
+    'conda-forge::blinker{% blinker_version %}' \
+    'conda-forge::geos{% geos_version %}' \
+    'conda-forge::giflib{% giflib_version %}' \
+    'conda-forge::httplib2{% httplib2_version %}' \
+    'conda-forge::jsonpatch{% jsonpatch_version %}' \
+    'conda-forge::jsonpointer{% jsonpointer_version %}' \
+    'conda-forge::kealib{% kealib_version %}' \
+    'conda-forge::libdap4{% libdap4_version %}' \
+    'conda-forge::mkl_fft{% mkl_fft_version %}' \
+    'conda-forge::mkl_random{% mkl_random_version %}' \
+    'conda-forge::mock{% mock_version %}' \
+    'conda-forge::netifaces{% netifaces_version %}' \
+    'conda-forge::proj4{% proj4_version %}' \
+    'conda-forge::pyjwt{% pyjwt_version %}' \
+    'conda-forge::pyproj{% pyproj_version %}' \
+    'conda-forge::pyshp{% pyshp_version %}' \
+    'conda-forge::simplejson{% simplejson_version %}' \
+    'conda-forge::awscli{% awscli_version %}' \
+    'conda-forge::feather-format{% feather-format_version %}' \
+    'conda-forge::importlib_metadata{% importlib_metadata_version %}' \
+    'conda-forge::mechanicalsoup{% mechanicalsoup_version %}' \
+    'conda-forge::plotnine{% plotnine_version %}' \
+    'conda-forge::progressbar2{% progressbar2_version %}' \
+    'conda-forge::pyarrow{% pyarrow_version %}' \
+    'plotly::plotly{% plotly_version %}' \
+    'plotly::plotly_express{% plotly_express_version %}' \
     && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
     # pip installs
     pip install --no-cache-dir \
+    'kaggle{% kaggle_version %}' \
     'opencv-contrib-python-headless{% opencv-contrib-python-headless_version %}' \
     'pygal{% pygal_version %}' \
+    'sklearn-pandas{% sklearn-pandas_version %}' \
     && rm -rf /home/$NB_USER/.local && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
