@@ -15,6 +15,7 @@ RUN conda install --quiet --yes \
     conda clean --all && \
     CC="cc -mavx2" pip install --no-cache-dir -U \
     --force-reinstall --no-binary :all: --compile 'pillow-simd' && \
+    pip install 'torchtext' && \
     rm -rf /home/$NB_USER/.local && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER

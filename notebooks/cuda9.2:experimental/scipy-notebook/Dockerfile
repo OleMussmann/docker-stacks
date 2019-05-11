@@ -26,39 +26,98 @@ USER $NB_UID
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
+    'automat' \
+    'basemap' \
+    'bcolz' \
     'beautifulsoup4' \
     'bokeh' \
     'cloudpickle' \
-    'conda-forge::blas=*=openblas' \
+    'configobj' \
+    'constantly' \
+    'cython' \
     'cython' \
     'dask' \
     'dill' \
+    'freexl' \
+    'ftfy' \
+    'gettext' \
+    'graphviz' \
+    'grpcio' \
     'h5py' \
     'hdf5' \
+    'hyperlink' \
+    'incremental' \
     'ipywidgets' \
+    'jbig' \
+    'libboost' \
+    'libnetcdf' \
+    'libpq' \
+    'libspatialite' \
+    'lxml' \
+    'mako' \
+    'markdown' \
+    'markupsafe' \
     'matplotlib' \
+    'mkl-include' \
+    'networkx' \
     'numba' \
     'numexpr' \
+    'oauthlib' \
     'pandas' \
     'patsy' \
+    'pbr' \
+    'prometheus_client' \
     'protobuf' \
-    'scipy' \
+    'pycrypto' \
+    'pyyaml' \
+    'reportlab' \
     'scikit-image' \
     'scikit-learn' \
+    'scipy' \
     'seaborn' \
+    'simplegeneric' \
     'sqlalchemy' \
     'statsmodels' \
     'sympy' \
-    'vincent' \
+    'werkzeug' \
+    'xerces-c' \
     'xlrd' \
-    && conda install --quiet --yes -c plotly \
-    'plotly' \
-    'plotly_express' \
+    'conda-forge::altair' \
+    'conda-forge::blas=*=openblas' \
+    'conda-forge::blinker' \
+    'conda-forge::geos' \
+    'conda-forge::giflib' \
+    'conda-forge::httplib2' \
+    'conda-forge::jsonpatch' \
+    'conda-forge::jsonpointer' \
+    'conda-forge::kealib' \
+    'conda-forge::libdap4' \
+    'conda-forge::mkl_fft' \
+    'conda-forge::mkl_random' \
+    'conda-forge::mock' \
+    'conda-forge::netifaces' \
+    'conda-forge::proj4' \
+    'conda-forge::pyjwt' \
+    'conda-forge::pyproj' \
+    'conda-forge::pyshp' \
+    'conda-forge::simplejson' \
+    'conda-forge::awscli' \
+    'conda-forge::feather-format' \
+    'conda-forge::importlib_metadata' \
+    'conda-forge::mechanicalsoup' \
+    'conda-forge::plotnine' \
+    'conda-forge::progressbar2' \
+    'conda-forge::pyarrow' \
+    'plotly::plotly' \
+    'plotly::plotly_express' \
     && conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
     # pip installs
     pip install --no-cache-dir \
+    'kaggle' \
     'opencv-contrib-python-headless' \
+    'pygal' \
+    'sklearn-pandas' \
     && rm -rf /home/$NB_USER/.local && \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \

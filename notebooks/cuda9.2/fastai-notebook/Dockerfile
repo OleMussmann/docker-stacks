@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda9.2:2019-05-06
+ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda9.2:2019-05-11
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
@@ -15,6 +15,7 @@ RUN conda install --quiet --yes \
     conda clean --all && \
     CC="cc -mavx2" pip install --no-cache-dir -U \
     --force-reinstall --no-binary :all: --compile 'pillow-simd==5.3.0.post1' && \
+    pip install 'torchtext==0.3.1' && \
     rm -rf /home/$NB_USER/.local && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
