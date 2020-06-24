@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Invoke all downstream build triggers.
+for url in $(echo $NEXT_BUILD_TRIGGERS | sed "s/,/ /g")
+do
+    curl -X POST $url
+done

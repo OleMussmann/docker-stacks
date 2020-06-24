@@ -27,6 +27,14 @@ cudnn_version = cudnn_major + "." + cudnn_minor + "." + cudnn_patch
 
 files = os.listdir("/usr/lib/x86_64-linux-gnu/")
 nccl_files = [f for f in files if "nccl.so" in f]
+
+# for CUDA v10.2 the library location differs
+if nccl_files == []:
+    cuda_major_minor = ".".join(cuda_version.split(".")[:2])
+    files = os.listdir("/usr/local/cuda-" + cuda_major_minor + \
+                       "/targets/x86_64-linux/lib/")
+    nccl_files = [f for f in files if "nccl.so" in f]
+
 sorted_nccl_files = sorted(nccl_files)
 nccl_version = ".".join([s for s in sorted_nccl_files[-1].split(".") if s.isdigit()])
 

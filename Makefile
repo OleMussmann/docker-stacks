@@ -16,7 +16,8 @@ ALL_IMAGE_FLAVOURS:=base-notebook \
 
 ALL_CUDA_VERSIONS:=9.2 \
 	10.0 \
-	10.1
+	10.1 \
+	10.2
 
 ALL_IMAGES:=$(foreach I,$(ALL_IMAGE_FLAVOURS), \
 	$(foreach C,$(ALL_CUDA_VERSIONS),$I-cuda$C))

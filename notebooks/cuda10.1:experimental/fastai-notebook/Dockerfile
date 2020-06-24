@@ -1,5 +1,21 @@
-### WARNING
-This image is disabled.
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+ARG BASE_CONTAINER=isbjornlabs/scipy-notebook-cuda10.1:experimental
+FROM $BASE_CONTAINER
 
-As of 2019-05-11, pytorch (and thus fast.ai) is not yet compatible with CUDA 10.1.
-Please use "fastai-notebook-cuda10.0:2019-05-11" instead.
+LABEL maintainer="Ole Mussmann <ole@isbjornlabs.com>"
+
+# Install fast.ai and pytorch
+# Install GPU-optimized JPEG encoder, see:
+# https://github.com/fastai/fastai#conda-install
+RUN conda install --quiet --yes \
+    -c pytorch -c fastai 'fastai' && \
+    conda uninstall --force jpeg libtiff -y && \
+    conda install -c conda-forge 'libjpeg-turbo' && \
+    conda clean --all -f -y && \
+    CC="cc -mavx2" pip install --no-cache-dir -U \
+    --force-reinstall --no-binary :all: --compile 'pillow-simd' && \
+    pip install 'torchtext' && \
+    rm -rf /home/$NB_USER/.local && \
+    fix-permissions $CONDA_DIR && \
+    fix-permissions /home/$NB_USER

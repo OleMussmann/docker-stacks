@@ -46,8 +46,9 @@ RUN sed -i 's/^#force_color_prompt=yes/force_color_prompt=yes/' /etc/skel/.bashr
 
 # Create NB_USER wtih name jovyan user with UID=1000 and in the 'users' group
 # and make sure these dirs are writable by the `users` group.
-RUN groupadd wheel -g 11 && \
-    echo "auth required pam_wheel.so use_uid" >> /etc/pam.d/su && \
+RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
+    sed -i.bak -e 's/^%admin/#%admin/' /etc/sudoers && \
+    sed -i.bak -e 's/^%sudo/#%sudo/' /etc/sudoers && \
     useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
     mkdir -p $CONDA_DIR && \
     chown $NB_USER:$NB_GID $CONDA_DIR && \
@@ -56,6 +57,7 @@ RUN groupadd wheel -g 11 && \
     fix-permissions "$(dirname $CONDA_DIR)"
 
 USER $NB_UID
+WORKDIR $HOME
 
 # Setup work directory for backward-compatibility
 RUN mkdir /home/$NB_USER/work && \
@@ -73,7 +75,8 @@ RUN cd /tmp && \
     $CONDA_DIR/bin/conda config --system --set show_channel_urls true && \
     $CONDA_DIR/bin/conda install --quiet --yes conda && \
      \
-    conda clean --all && \
+    conda list python | grep '^python ' | tr -s ' ' | cut -d '.' -f 1,2 | sed 's/$/.*/' >> $CONDA_DIR/conda-meta/pinned && \
+    conda clean --all -f -y && \
     rm -rf /home/$NB_USER/.cache/yarn && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
@@ -81,7 +84,7 @@ RUN cd /tmp && \
 # Install Tini
 RUN conda install --quiet --yes 'tini' && \
     conda list tini | grep tini | tr -s ' ' | cut -d ' ' -f 1,2 >> $CONDA_DIR/conda-meta/pinned && \
-    conda clean --all && \
+    conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
@@ -95,9 +98,7 @@ RUN conda install --quiet --yes -c conda-forge \
     'jupyterhub' \
     'jupyterlab' \
     'notebook' \
-    && conda clean --all && \
-    jupyter labextension install @jupyterlab/hub-extension && \
-    jupyter lab build && \
+    && conda clean --all -f -y && \
     npm cache clean --force && \
     jupyter notebook --generate-config && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
@@ -119,6 +120,9 @@ COPY start.sh /usr/local/bin/
 COPY start-notebook.sh /usr/local/bin/
 COPY start-singleuser.sh /usr/local/bin/
 COPY jupyter_notebook_config.py /etc/jupyter/
+
+# Fix permissions on /etc/jupyter as root
+USER root
 RUN fix-permissions /etc/jupyter/
 
 # Switch back to jovyan to avoid accidental container runs as root

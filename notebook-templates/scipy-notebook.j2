@@ -48,6 +48,7 @@ RUN conda install --quiet --yes \
     'hyperlink{% hyperlink_version %}' \
     'incremental{% incremental_version %}' \
     'ipywidgets{% ipywidgets_version %}' \
+    'ipympl{% ipympl_version %}' \
     'jbig{% jbig_version %}' \
     'libboost{% libboost_version %}' \
     'libnetcdf{% libnetcdf_version %}' \
@@ -60,6 +61,7 @@ RUN conda install --quiet --yes \
     'matplotlib{% matplotlib_version %}' \
     'mkl-include{% mkl-include_version %}' \
     'networkx{% networkx_version %}' \
+    'nodejs{% nodejs_version %}' \
     'numba{% numba_version %}' \
     'numexpr{% numexpr_version %}' \
     'oauthlib{% oauthlib_version %}' \
@@ -79,6 +81,7 @@ RUN conda install --quiet --yes \
     'sqlalchemy{% sqlalchemy_version %}' \
     'statsmodels{% statsmodels_version %}' \
     'sympy{% sympy_version %}' \
+    'toml{% toml_version %}' \
     'werkzeug{% werkzeug_version %}' \
     'xerces-c{% xerces-c_version %}' \
     'xlrd{% xlrd_version %}' \
@@ -111,7 +114,7 @@ RUN conda install --quiet --yes \
     'plotly::plotly{% plotly_version %}' \
     'plotly::plotly_express{% plotly_express_version %}' \
     && conda remove --quiet --yes --force qt pyqt && \
-    conda clean --all && \
+    conda clean --all -f -y && \
     # pip installs
     pip install --no-cache-dir \
     'kaggle{% kaggle_version %}' \
@@ -125,8 +128,11 @@ RUN conda install --quiet --yes \
     # Check this URL for most recent compatibilities
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
     jupyter labextension install @jupyter-widgets/jupyterlab-manager{% @jupyter-widgets/jupyterlab-manager_version %} && \
-    jupyter labextension install jupyterlab_bokeh{% jupyterlab_bokeh_version %} && \
-    jupyter labextension install @jupyterlab/plotly-extension{% @jupyterlab/plotly-extension_version %} && \
+    jupyter labextension install @bokeh/jupyter_bokeh{% @bokeh/jupyter_bokeh_version %} && \
+    # more ram needed for jupyterlab-plotly
+    export NODE_OPTIONS=--max-old-space-size=4096 && \
+    jupyter labextension install jupyterlab-plotly{% jupyterlab-plotly_version %} && \
+    jupyter labextension install plotlywidget{% plotlywidget_version %} && \
     jupyter lab build && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \

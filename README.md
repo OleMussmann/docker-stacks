@@ -36,11 +36,13 @@ Images are based on different versions of CUDA. Supported are:
 - CUDA 9.2
 - CUDA 10.0
 - CUDA 10.1
+- CUDA 10.2
 
 Choose the highest CUDA version that still works with your target notebook and your latest installed graphics driver.
 
 | Linux x86_64 Driver Version | CUDA Toolkit |
 |-----------------------------|--------------|
+| >= 440.33                   | CUDA 10.2    |
 | >= 418.39                   | CUDA 10.1    |
 | >= 410.48                   | CUDA 10.0    |
 | >= 396.26                   | CUDA 9.2     |
@@ -59,21 +61,29 @@ The `latest` version of the version-pinned `scipy` notebook, based on CUDA `10.1
 #### Image Tables
 Not all versions are compatible with each other. Consult the tables below to see which notebooks are buildable.
 
-##### Version-pinned: 2019-05-06
-| notebook   | [CUDA 9.2](notebooks/cuda9.2)              | [CUDA 10.0](notebooks/cuda10.0)             | [CUDA 10.1](notebooks/cuda10.1)              |
-|------------|--------------------------------------------|---------------------------------------------|----------------------------------------------|
-| scipy      | [✔️](notebooks/cuda9.2/scipy-notebook)      | [✔️](notebooks/cuda10.0/scipy-notebook)      | [✔️](notebooks/cuda10.1/scipy-notebook)       |
-| fastai     | [✔️](notebooks/cuda9.2/fastai-notebook)     | [✔️](notebooks/cuda10.0/fastai-notebook)     | [❌](notebooks/cuda10.1/fastai-notebook)      |
-| tensorflow | [✔️](notebooks/cuda9.2/tensorflow-notebook) | [✔️](notebooks/cuda10.0/tensorflow-notebook) | [❌](notebooks/cuda10.1/tensorflow-notebook) |
-| mxnet      | [✔️](notebooks/cuda9.2/mxnet-notebook)      | [✔️](notebooks/cuda10.0/mxnet-notebook)      | [❌](notebooks/cuda10.1/mxnet-notebook)      |
+##### Version-pinned: 2020-06-24
+| notebook   | [CUDA 9.2](notebooks/cuda9.2)              | [CUDA 10.0](notebooks/cuda10.0)             | [CUDA 10.1](notebooks/cuda10.1)              | [CUDA 10.2](notebooks/cuda10.2)              |
+|------------|--------------------------------------------|---------------------------------------------|----------------------------------------------|----------------------------------------------|
+| scipy      | [✔️](notebooks/cuda9.2/scipy-notebook)      | [✔️](notebooks/cuda10.0/scipy-notebook)      | [✔️](notebooks/cuda10.1/scipy-notebook)       | [✔️](notebooks/cuda10.1/scipy-notebook)       |
+| fastai     | [✔️](notebooks/cuda9.2/fastai-notebook)     | [✔️](notebooks/cuda10.0/fastai-notebook)     | [✔️](notebooks/cuda10.1/fastai-notebook)      | [✔️](notebooks/cuda10.1/fastai-notebook)      |
+| tensorflow | [✔️](notebooks/cuda9.2/tensorflow-notebook) | [✔️](notebooks/cuda10.0/tensorflow-notebook) | [✔️](notebooks/cuda10.1/tensorflow-notebook)  | [✔️](notebooks/cuda10.1/tensorflow-notebook)  |
+| mxnet      | [✔️](notebooks/cuda9.2/mxnet-notebook)      | [✔️](notebooks/cuda10.0/mxnet-notebook)      | [✔️](notebooks/cuda10.1/mxnet-notebook)       | [✔️](notebooks/cuda10.1/mxnet-notebook)       |
 
 ##### Experimental
-| notebook   | [CUDA 9.2](notebooks/cuda9.2:experimental)              | [CUDA 10.0](notebooks/cuda10.0:experimental)             | [CUDA 10.1](notebooks/cuda10.1:experimental)              |
-|------------|---------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------------|
-| scipy      | [✔️](notebooks/cuda9.2/scipy-notebook:experimental)      | [✔️](notebooks/cuda10.0/scipy-notebook:experimental)      | [✔️](notebooks/cuda10.1/scipy-notebook:experimental)       |
-| fastai     | [✔️](notebooks/cuda9.2/fastai-notebook:experimental)     | [✔️](notebooks/cuda10.0/fastai-notebook:experimental)     | [❌](notebooks/cuda10.1/fastai-notebook:experimental)      |
-| tensorflow | [✔️](notebooks/cuda9.2/tensorflow-notebook:experimental) | [✔️](notebooks/cuda10.0/tensorflow-notebook:experimental) | [❌](notebooks/cuda10.1/tensorflow-notebook:experimental) |
-| mxnet      | [✔️](notebooks/cuda9.2/mxnet-notebook:experimental)      | [✔️](notebooks/cuda10.0/mxnet-notebook:experimental)      | [❌](notebooks/cuda10.1/mxnet-notebook:experimental)      |
+| notebook   | [CUDA 9.2](notebooks/cuda9.2:experimental)              | [CUDA 10.0](notebooks/cuda10.0:experimental)             | [CUDA 10.1](notebooks/cuda10.1:experimental)              | [CUDA 10.2](notebooks/cuda10.2:experimental)              |
+|------------|---------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
+| scipy      | [✔️](notebooks/cuda9.2/scipy-notebook:experimental)      | [✔️](notebooks/cuda10.0/scipy-notebook:experimental)      | [✔️](notebooks/cuda10.1/scipy-notebook:experimental)       | [✔️](notebooks/cuda10.1/scipy-notebook:experimental)       |
+| fastai     | [✔️](notebooks/cuda9.2/fastai-notebook:experimental)     | [✔️](notebooks/cuda10.0/fastai-notebook:experimental)     | [✔️](notebooks/cuda10.1/fastai-notebook:experimental)      | [✔️](notebooks/cuda10.1/fastai-notebook:experimental)      |
+| tensorflow | [✔️](notebooks/cuda9.2/tensorflow-notebook:experimental) | [✔️](notebooks/cuda10.0/tensorflow-notebook:experimental) | [✔️](notebooks/cuda10.1/tensorflow-notebook:experimental)  | [✔️](notebooks/cuda10.1/tensorflow-notebook:experimental)  |
+| mxnet      | [✔️](notebooks/cuda9.2/mxnet-notebook:experimental)      | [✔️](notebooks/cuda10.0/mxnet-notebook:experimental)      | [✔️](notebooks/cuda10.1/mxnet-notebook:experimental)       | [✔️](notebooks/cuda10.1/mxnet-notebook:experimental)       |
+
+#### Pinned packages (2020-06-24)
+
+##### **all noteboos**
+
+    jupyterlab==2.0.2
+    reason: jupyterlab_bokeh not compatible with jupyterlab > 2.0.x
+
 
 ### Examples
 The examples below may help you get started if you finished the above installation, know which image you want to use, and want to launch a single Jupyter Notebook server in a container.

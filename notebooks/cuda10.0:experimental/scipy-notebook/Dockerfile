@@ -48,6 +48,7 @@ RUN conda install --quiet --yes \
     'hyperlink' \
     'incremental' \
     'ipywidgets' \
+    'ipympl' \
     'jbig' \
     'libboost' \
     'libnetcdf' \
@@ -60,6 +61,7 @@ RUN conda install --quiet --yes \
     'matplotlib' \
     'mkl-include' \
     'networkx' \
+    'nodejs' \
     'numba' \
     'numexpr' \
     'oauthlib' \
@@ -79,6 +81,7 @@ RUN conda install --quiet --yes \
     'sqlalchemy' \
     'statsmodels' \
     'sympy' \
+    'toml' \
     'werkzeug' \
     'xerces-c' \
     'xlrd' \
@@ -111,7 +114,7 @@ RUN conda install --quiet --yes \
     'plotly::plotly' \
     'plotly::plotly_express' \
     && conda remove --quiet --yes --force qt pyqt && \
-    conda clean --all && \
+    conda clean --all -f -y && \
     # pip installs
     pip install --no-cache-dir \
     'kaggle' \
@@ -125,8 +128,11 @@ RUN conda install --quiet --yes \
     # Check this URL for most recent compatibilities
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
     jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
-    jupyter labextension install jupyterlab_bokeh && \
-    jupyter labextension install @jupyterlab/plotly-extension && \
+    jupyter labextension install @bokeh/jupyter_bokeh && \
+    # more ram needed for jupyterlab-plotly
+    export NODE_OPTIONS=--max-old-space-size=4096 && \
+    jupyter labextension install jupyterlab-plotly && \
+    jupyter labextension install plotlywidget && \
     jupyter lab build && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
