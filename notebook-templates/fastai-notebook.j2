@@ -12,7 +12,7 @@ RUN conda install --quiet --yes \
     -c pytorch -c fastai 'fastai{% fastai_version %}' && \
     conda uninstall --force jpeg libtiff -y && \
     conda install -c conda-forge 'libjpeg-turbo{% libjpeg-turbo_version %}' && \
-    conda clean --all && \
+    conda clean --all -f -y && \
     CC="cc -mavx2" pip install --no-cache-dir -U \
     --force-reinstall --no-binary :all: --compile 'pillow-simd{% pillow-simd_version %}' && \
     pip install 'torchtext{% torchtext_version %}' && \
