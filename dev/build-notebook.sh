@@ -56,7 +56,7 @@ if [[ "$image_name_with_tag" == *":experimental" ]] ; then
     fi
 
     # get the most recent miniconda version number (that corresponds to 'latest')
-    repo=$(curl -s https://repo.continuum.io/miniconda/)
+    repo=$(curl -s https://repo.anaconda.com/miniconda/)
     miniconda_latest_sha=$(echo "$repo" | \
       grep -A3 Miniconda3-latest-Linux-x86_64.sh | tail -n1 | \
       sed -e 's/<[^>]*>//g' | sed -e 's/ //g')
